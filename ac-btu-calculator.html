@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AC BTU Calculator | BTU Calc</title>
+  <meta name="description" content="Calculate accurate AC BTU size for any room using room area, ceiling height, sun, occupancy, kitchen load, climate, and insulation factors.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://btucalc.vercel.app/ac-btu-calculator">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>body{background:#f7f9fc;color:#1a2233;font-family:'DM Sans',system-ui,sans-serif}.container{width:min(1180px,calc(100% - 2rem));margin-inline:auto}.site-header{border-bottom:1px solid #dde3ec;background:#fff}.site-header .container{display:flex;align-items:center;justify-content:space-between;min-height:74px}.page-hero{padding:4rem 0 2rem}h1,h2{font-family:'DM Serif Display',Georgia,serif;line-height:1.2}h1{font-size:clamp(2rem,4vw,3rem)}.lede{font-size:1.125rem;color:#5a6880;max-width:860px}.calc-layout,.card-grid,.related-grid{display:grid;gap:1rem}.calc-card,.content-card,.related-card,.calc-inputs,.calc-results{background:#fff;border:1px solid #dde3ec;border-radius:16px;padding:1.2rem}.skip-link{position:absolute;left:1rem;top:-3rem;background:#0066cc;color:#fff;padding:.75rem 1rem}.skip-link:focus{top:1rem}@media(min-width:768px){.calc-layout{grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr)}.card-grid,.related-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}</style>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/calculator.js"></script>
+<meta property="og:title" content="AC BTU Calculator | BTU Calc">
+<meta property="og:description" content="Calculate accurate AC BTU size for any room using room area, ceiling height, sun, occupancy, kitchen load, climate, and insulation factors.">
+<meta property="og:url" content="https://btucalc.vercel.app/ac-btu-calculator">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://btucalc.vercel.app/og-image.png">
+<meta property="og:site_name" content="BTUCalc">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AC BTU Calculator | BTU Calc">
+<meta name="twitter:description" content="Calculate accurate AC BTU size for any room using room area, ceiling height, sun, occupancy, kitchen load, climate, and insulation factors.">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"BTUCalc","url":"https://btucalc.vercel.app/"},{"@type":"SoftwareApplication","name":"AC BTU Calculator","applicationCategory":"UtilityApplication","operatingSystem":"Web","url":"https://btucalc.vercel.app/ac-btu-calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many BTU do I need for AC?","acceptedAnswer":{"@type":"Answer","text":"Most rooms start around 20 BTU per square foot, then adjust for climate, sun exposure, ceiling height, occupants, kitchen loads, and insulation quality."}},{"@type":"Question","name":"How many square feet will 12000 BTU cool?","acceptedAnswer":{"@type":"Answer","text":"A 12000 BTU unit often covers around 450 to 550 square feet depending on insulation, ceiling height, humidity, climate, and direct sun exposure."}},{"@type":"Question","name":"Is 8000 BTU enough for a bedroom?","acceptedAnswer":{"@type":"Answer","text":"In many average bedrooms 8000 BTU is enough, but hot climates, sunny exposures, kitchens, and tall ceilings can push the requirement higher."}},{"@type":"Question","name":"What if my AC is too large?","acceptedAnswer":{"@type":"Answer","text":"An oversized air conditioner can short cycle, waste energy, and remove less humidity, leading to clammy comfort even when air temperature drops quickly."}},{"@type":"Question","name":"Should I add BTU for kitchen heat and people?","acceptedAnswer":{"@type":"Answer","text":"Yes. Extra occupants, kitchen appliances, and internal gains should be added because they increase the sensible cooling load in the room."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://btucalc.vercel.app/"},{"@type":"ListItem","position":2,"name":"AC BTU Calculator","item":"https://btucalc.vercel.app/ac-btu-calculator"}]}]}</script>
+</head>
+<body>
+<a href="#calculator" class="skip-link">Skip to calculator</a>
+<header class="site-header">
+  <div class="container">
+    <a href="/index.html" class="logo" aria-label="BTU Calc Home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5a5 5 0 0 0-5 5v13.4a8 8 0 1 0 10 0V10a5 5 0 0 0-5-5Z"></path><path d="M20 11v15"></path></svg>
+      <span>BTU<strong>Calc</strong></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="/ac-btu-calculator.html">AC</a>
+      <a href="/heating-btu-calculator.html">Heating</a>
+      <a href="/mini-split-btu-calculator.html">Mini Split</a>
+      <a href="/radiator-btu-calculator.html">Radiator</a>
+      <a href="/btu-conversion-calculator.html">Convert</a>
+      <a href="/special-spaces-btu-calculator.html">Spaces</a>
+      <a href="/fireplace-pool-btu-calculator.html">More</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode">🌙</button>
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <div class="mobile-panel">
+    <div class="mobile-panel-inner">
+      <a href="/ac-btu-calculator.html">AC BTU calculator by room size</a>
+      <a href="/heating-btu-calculator.html">Heating BTU calculator for furnaces</a>
+      <a href="/mini-split-btu-calculator.html">Mini split BTU sizing guide</a>
+      <a href="/radiator-btu-calculator.html">Radiator BTU output calculator</a>
+      <a href="/btu-conversion-calculator.html">BTU conversion calculator</a>
+      <a href="/special-spaces-btu-calculator.html">Special spaces BTU calculator</a>
+      <a href="/fireplace-pool-btu-calculator.html">Fireplace and pool heater sizing</a>
+      <a href="/btu-energy-cost-calculator.html">BTU energy cost calculator</a>
+      <a href="/how-to-calculate-btu.html">How to calculate BTU guide</a>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumbs"><a href="/index.html">Home</a><span>›</span><span>AC BTU Calculator</span></div>
+      <div class="pill">Cooling load sizing · Updated 2026</div>
+      <h1>AC BTU Calculator for Room Size, Sun & Climate</h1>
+      <p class="lede">Use our air conditioner BTU calculator to estimate the right cooling size for bedrooms, living rooms, kitchens, offices, and open-plan areas.</p>
+    </div>
+  </section>
+
+  <section id="calculator" class="section">
+    <div class="container calc-layout">
+      <div class="calc-inputs">
+        <div>
+          <div class="label-note">Room dimensions</div>
+          <div class="unit-toggle" id="ac-unit-group" data-unit-group data-unit="ft">
+            <button type="button" class="unit-btn active" data-unit="ft">Feet</button>
+            <button type="button" class="unit-btn" data-unit="m">Meters</button>
+          </div>
+        </div>
+        <form id="ac-form" class="content-flow">
+          <div class="two-col">
+            <div class="input-group"><label for="ac-length">Room length</label><input id="ac-length" type="number" min="1" step="0.1" placeholder="15"></div>
+            <div class="input-group"><label for="ac-width">Room width</label><input id="ac-width" type="number" min="1" step="0.1" placeholder="12"></div>
+            <div class="input-group"><label for="ac-ceiling">Ceiling height (ft)</label><input id="ac-ceiling" type="number" min="7" step="0.1" placeholder="8"></div>
+            <div class="input-group"><label for="ac-occupants">Number of occupants</label><input id="ac-occupants" type="number" min="1" step="1" placeholder="2"></div>
+            <div class="input-group"><label for="ac-climate">Climate zone</label><select id="ac-climate"><option value="hot">Hot / humid</option><option value="mixed" selected>Mixed</option><option value="moderate">Moderate</option><option value="cool">Cool</option><option value="verycold">Very cold</option></select></div>
+            <div class="input-group"><label for="ac-sun">Sun exposure</label><select id="ac-sun"><option value="heavy">Heavy sun</option><option value="normal" selected>Average sun</option><option value="shaded">Mostly shaded</option></select></div>
+            <div class="input-group"><label for="ac-kitchen">Open kitchen or major cooking load?</label><select id="ac-kitchen"><option value="no" selected>No</option><option value="yes">Yes</option></select></div>
+            <div class="input-group"><label for="ac-insulation">Insulation quality</label><select id="ac-insulation"><option value="poor">Poor</option><option value="average" selected>Average</option><option value="good">Good</option><option value="excellent">Excellent</option></select></div>
+          </div>
+          <p class="form-error error-text" role="alert" hidden></p>
+          <div class="result-actions">
+            <button type="submit" class="btn-calculate">Calculate AC BTU</button>
+            <button type="button" class="btn-reset" data-reset-form="ac-form" data-reset-result="ac-result-output" data-reset-placeholder="ac-result-placeholder">Reset</button>
+          </div>
+        </form>
+      </div>
+      <aside class="calc-results" aria-live="polite">
+        <div id="ac-result-placeholder" class="result-placeholder">
+          <div>
+            <div class="label-note">Cooling result</div>
+            <p>Enter room details to see your recommended AC BTU range and cooling equipment size.</p>
+          </div>
+        </div>
+        <div id="ac-result-output" hidden>
+          <div class="result-card" id="ac-copy-area">
+            <div class="result-primary">
+              <span class="result-label">Recommended cooling range</span>
+              <span id="ac-btu-output" class="result-value">—</span>
+            </div>
+            <div class="result-secondary">
+              <div class="result-item"><span>Nominal tonnage</span><strong id="ac-tonnage-output">—</strong></div>
+              <div class="result-item"><span>Suggested system type</span><strong id="ac-unit-type">—</strong></div>
+              <div class="result-item"><span>Sizing note</span><span id="ac-sizing-badge" class="result-badge">—</span></div>
+              <div class="result-item"><span>Recommendation</span><strong id="ac-warning">—</strong></div>
+            </div>
+            <div class="result-actions">
+              <button type="button" class="btn-copy" data-copy-target="ac-copy-area">📋 Copy Result</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container content-flow">
+      <h2>How We Calculate AC BTU</h2>
+      <p>Our AC BTU calculator starts with the common planning rule of roughly 20 BTU per square foot for a standard room. That baseline is then refined using the same real-world factors HVAC installers watch during field sizing: climate severity, ceiling height, direct sun exposure, internal gains from people, kitchen heat, and insulation quality. A hot, sunny room with poor insulation needs noticeably more cooling than a shaded room of the same floor area. Taller ceilings also matter because the air volume increases beyond a typical eight-foot room. When more than two people use the room regularly, the calculator adds sensible heat for each extra person. Kitchen-adjacent spaces get an additional allowance because cooking appliances and warm surfaces increase the load. After applying each multiplier and adjustment, the final total is rounded to the nearest 500 BTU so the answer lines up with actual AC and mini split equipment sizes. That gives you a practical shopping target rather than a theoretical load with no real product match.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-flow">
+      <h2>AC BTU Chart</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Room size</th><th>Approx. area</th><th>Typical BTU</th><th>Common unit type</th></tr></thead>
+          <tbody>
+            <tr><td>Small bedroom</td><td>100–150 sq ft</td><td>5,000 BTU</td><td>Small window AC</td></tr>
+            <tr><td>Large bedroom</td><td>150–250 sq ft</td><td>6,000–8,000 BTU</td><td>Window or portable AC</td></tr>
+            <tr><td>Home office</td><td>200–300 sq ft</td><td>7,000–9,000 BTU</td><td>Portable or window AC</td></tr>
+            <tr><td>Living room</td><td>300–450 sq ft</td><td>9,000–12,000 BTU</td><td>Large window AC</td></tr>
+            <tr><td>Studio apartment</td><td>450–650 sq ft</td><td>12,000–15,000 BTU</td><td>Mini split</td></tr>
+            <tr><td>Open-plan floor</td><td>650–900 sq ft</td><td>15,000–20,000 BTU</td><td>Ductless mini split</td></tr>
+            <tr><td>Large family room</td><td>900–1,200 sq ft</td><td>20,000–24,000 BTU</td><td>Mini split or central zone</td></tr>
+            <tr><td>Great room</td><td>1,200–1,500 sq ft</td><td>24,000–30,000 BTU</td><td>Central AC zone</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-flow">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details><summary>How many BTU do I need for AC?</summary><p>Most rooms start with a 20 BTU per square foot rule, then adjust upward or downward for local climate, occupancy, ceiling height, sun exposure, insulation, and kitchen heat.</p></details>
+        <details><summary>How many square feet will 12000 BTU cool?</summary><p>A 12000 BTU air conditioner commonly covers about 450 to 550 square feet in average conditions, but hot climates or sunny rooms can reduce that effective coverage.</p></details>
+        <details><summary>Is 8000 BTU enough for a bedroom?</summary><p>For many average bedrooms, yes, but a sunny upper-floor room or a large bedroom may need more than 8000 BTU to stay comfortable during peak summer weather.</p></details>
+        <details><summary>What if my AC is too large?</summary><p>An oversized AC can cool the air too quickly, short cycle, waste energy, and leave humidity behind, which often makes the room feel cool but damp.</p></details>
+        <details><summary>Should I add BTU for kitchen heat and people?</summary><p>Yes. Extra people and kitchen equipment add real internal heat gains, so they should be included when estimating the correct cooling capacity.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-flow">
+      <h2>Related Calculators</h2>
+      <div class="related-grid">
+        <a href="/mini-split-btu-calculator.html" class="related-card"><strong>Mini split BTU calculator for ductless sizing</strong><p>Compare single-zone and multi-zone cooling loads for wall-mounted heat pumps.</p></a>
+        <a href="/btu-conversion-calculator.html" class="related-card"><strong>BTU to watts and tons conversion calculator</strong><p>Convert your cooling load into tons, kW, CFM, and other planning units.</p></a>
+        <a href="/how-to-calculate-btu.html" class="related-card"><strong>How to calculate BTU for room cooling</strong><p>Learn the formula, room charts, and correction factors behind AC BTU sizing.</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/index.html" class="logo" aria-label="BTU Calc Home">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5a5 5 0 0 0-5 5v13.4a8 8 0 1 0 10 0V10a5 5 0 0 0-5-5Z"></path><path d="M20 11v15"></path></svg>
+        <span>BTU<strong>Calc</strong></span>
+      </a>
+      <p class="lede" style="font-size:1rem;margin-top:1rem">Free, accurate BTU calculators for every heating and cooling need.</p>
+    </div>
+    <div class="footer-columns">
+      <div><h4>Cooling</h4><ul><li><a href="/ac-btu-calculator.html">AC BTU Calculator</a></li><li><a href="/mini-split-btu-calculator.html">Mini Split BTU Calculator</a></li><li><a href="/special-spaces-btu-calculator.html">Portable AC and special spaces sizing</a></li></ul></div>
+      <div><h4>Heating</h4><ul><li><a href="/heating-btu-calculator.html">Furnace BTU calculator</a></li><li><a href="/radiator-btu-calculator.html">Radiator heat output calculator</a></li><li><a href="/fireplace-pool-btu-calculator.html">Fireplace and boiler calculator</a></li></ul></div>
+      <div><h4>Tools and learn</h4><ul><li><a href="/btu-conversion-calculator.html">BTU to watts and tons conversion</a></li><li><a href="/btu-energy-cost-calculator.html">BTU energy cost estimator</a></li><li><a href="/how-to-calculate-btu.html">How to calculate BTU</a></li></ul></div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 BTUCalc. All rights reserved.</span>
+    <span><a href="/privacy-policy.html">Privacy Policy</a> · <a href="/terms-of-use.html">Terms of Use</a></span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTU Calculator — Free AC, Heating & Mini Split BTU Calculator (2026)</title>
+  <meta name="description" content="Free BTU sizing calculator for AC, heating, mini splits, radiators, conversions, energy cost, and room sizing with accurate 2026 planning formulas.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://btucalc.vercel.app/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>body{background:#f7f9fc;color:#1a2233;font-family:'DM Sans',system-ui,sans-serif}.container{width:min(1180px,calc(100% - 2rem));margin-inline:auto}.site-header{border-bottom:1px solid #dde3ec;background:#fff}.site-header .container{display:flex;align-items:center;justify-content:space-between;min-height:74px}.hero,.page-hero{padding:4rem 0 2rem}h1,h2{font-family:'DM Serif Display',Georgia,serif;line-height:1.2}h1{font-size:clamp(2rem,4vw,3rem)}.lede{font-size:1.125rem;color:#5a6880;max-width:860px}.calc-layout,.calculator-grid,.card-grid,.related-grid{display:grid;gap:1rem}.calc-card,.content-card,.related-card,.calc-inputs,.calc-results{background:#fff;border:1px solid #dde3ec;border-radius:16px;padding:1.2rem}.skip-link{position:absolute;left:1rem;top:-3rem;background:#0066cc;color:#fff;padding:.75rem 1rem}.skip-link:focus{top:1rem}@media(min-width:768px){.calc-layout{grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr)}.calculator-grid,.card-grid,.related-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}</style>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/calculator.js"></script>
+<meta property="og:title" content="BTU Calculator — Free AC, Heating & Mini Split BTU Calculator (2026)">
+<meta property="og:description" content="Free BTU sizing calculator for AC, heating, mini splits, radiators, conversions, energy cost, and room sizing with accurate 2026 planning formulas.">
+<meta property="og:url" content="https://btucalc.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://btucalc.vercel.app/og-image.png">
+<meta property="og:site_name" content="BTUCalc">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BTU Calculator — Free AC, Heating & Mini Split BTU Calculator (2026)">
+<meta name="twitter:description" content="Free BTU sizing calculator for AC, heating, mini splits, radiators, conversions, energy cost, and room sizing with accurate 2026 planning formulas.">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"BTUCalc","url":"https://btucalc.vercel.app/"},{"@type":"SoftwareApplication","name":"BTU Calculator Hub","applicationCategory":"UtilityApplication","operatingSystem":"Web","url":"https://btucalc.vercel.app/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a BTU calculator?","acceptedAnswer":{"@type":"Answer","text":"A BTU calculator estimates heating or cooling output by combining room size, climate, insulation, ceiling height, occupants, and equipment type into a practical planning load."}},{"@type":"Question","name":"How accurate is BTUCalc?","acceptedAnswer":{"@type":"Answer","text":"BTUCalc uses planning-grade formulas including square-foot baselines, climate adjustments, insulation multipliers, appliance loads, and common HVAC conversion constants for practical sizing."}},{"@type":"Question","name":"Can I use BTUCalc for mini splits and furnaces?","acceptedAnswer":{"@type":"Answer","text":"Yes. The site includes dedicated tools for air conditioning, heating, mini splits, radiators, appliance heating, special spaces, energy cost comparisons, and BTU conversions."}},{"@type":"Question","name":"Why does room insulation change BTU results?","acceptedAnswer":{"@type":"Answer","text":"Better insulation reduces heat gain in summer and heat loss in winter, so the same room dimensions can produce very different BTU recommendations."}},{"@type":"Question","name":"Where can I learn the full BTU formula?","acceptedAnswer":{"@type":"Answer","text":"Use the how-to-calculate-btu guide for formulas, charts, examples, and conversion references that explain the calculations behind each tool."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://btucalc.vercel.app/"},{"@type":"ListItem","position":2,"name":"BTU Calculator","item":"https://btucalc.vercel.app/"}]}]}</script>
+</head>
+<body>
+<a href="#calculator" class="skip-link">Skip to calculator</a>
+<header class="site-header">
+  <div class="container">
+    <a href="/index.html" class="logo" aria-label="BTU Calc Home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5a5 5 0 0 0-5 5v13.4a8 8 0 1 0 10 0V10a5 5 0 0 0-5-5Z"></path><path d="M20 11v15"></path></svg>
+      <span>BTU<strong>Calc</strong></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="/ac-btu-calculator.html">AC</a>
+      <a href="/heating-btu-calculator.html">Heating</a>
+      <a href="/mini-split-btu-calculator.html">Mini Split</a>
+      <a href="/radiator-btu-calculator.html">Radiator</a>
+      <a href="/btu-conversion-calculator.html">Convert</a>
+      <a href="/special-spaces-btu-calculator.html">Spaces</a>
+      <a href="/fireplace-pool-btu-calculator.html">More</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode">🌙</button>
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <div class="mobile-panel">
+    <div class="mobile-panel-inner">
+      <a href="/ac-btu-calculator.html">AC BTU calculator by room size</a>
+      <a href="/heating-btu-calculator.html">Heating BTU calculator for furnaces</a>
+      <a href="/mini-split-btu-calculator.html">Mini split BTU sizing guide</a>
+      <a href="/radiator-btu-calculator.html">Radiator BTU output calculator</a>
+      <a href="/btu-conversion-calculator.html">BTU conversion calculator</a>
+      <a href="/special-spaces-btu-calculator.html">Special spaces BTU calculator</a>
+      <a href="/fireplace-pool-btu-calculator.html">Fireplace and pool heater sizing</a>
+      <a href="/btu-energy-cost-calculator.html">BTU energy cost calculator</a>
+      <a href="/how-to-calculate-btu.html">How to calculate BTU guide</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">✓ Updated for 2026 · Used by 500,000+ homeowners</div>
+      <h1>Free BTU Calculator — Find the Right Size in Seconds</h1>
+      <p class="hero-subtitle">Find the exact BTU needed for AC, heating, mini splits, radiators &amp; more — in seconds.</p>
+      <div class="calculator-grid">
+        <a href="/ac-btu-calculator.html" class="calc-card"><span class="calc-icon">❄️</span><strong>AC BTU Calculator</strong><span>Window, portable &amp; central AC</span></a>
+        <a href="/heating-btu-calculator.html" class="calc-card"><span class="calc-icon">🔥</span><strong>Heating BTU Calculator</strong><span>Furnace, boiler &amp; electric heat</span></a>
+        <a href="/mini-split-btu-calculator.html" class="calc-card"><span class="calc-icon">💨</span><strong>Mini Split Calculator</strong><span>Single &amp; multi-zone heat pumps</span></a>
+        <a href="/radiator-btu-calculator.html" class="calc-card"><span class="calc-icon">🌡️</span><strong>Radiator BTU Calculator</strong><span>Panel, column &amp; electric radiators</span></a>
+        <a href="/btu-conversion-calculator.html" class="calc-card"><span class="calc-icon">🔄</span><strong>BTU Conversion</strong><span>BTU to watts, kW, tons &amp; more</span></a>
+        <a href="/special-spaces-btu-calculator.html" class="calc-card"><span class="calc-icon">🏗️</span><strong>Special Spaces</strong><span>Garage, server room, grow room</span></a>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="three-col">
+        <article class="content-card"><div class="kicker">Why BTUCalc?</div><h3>🎯 ACCA Manual J Methodology</h3><p>Our formulas use industry-standard room load factors, insulation multipliers, ceiling height adjustments, and occupancy rules to generate planning-grade recommendations.</p></article>
+        <article class="content-card"><div class="kicker">Why BTUCalc?</div><h3>⚡ Instant Results</h3><p>Every page is built with pure HTML, CSS, and vanilla JavaScript, so results appear instantly with no app downloads, no signups, and no waiting.</p></article>
+        <article class="content-card"><div class="kicker">Why BTUCalc?</div><h3>📱 Works on Any Device</h3><p>Use BTUCalc on desktop, tablet, or mobile to compare air conditioner, furnace, radiator, pool heater, and special-space sizing in the same workflow.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="section-alt">
+    <div class="container two-col content-flow">
+      <div class="info-panel"><div class="kicker">What is BTU?</div><h2>What is a BTU?</h2><p>A BTU, or British Thermal Unit, measures how much heat energy is needed to raise one pound of water by one degree Fahrenheit. In HVAC work, BTU usually means how much heating or cooling output a system can deliver in one hour. If you want the long-form explanation, formulas, and examples, read our <a href="/how-to-calculate-btu.html">complete guide on how to calculate BTU</a>.</p></div>
+      <div class="table-wrap"><table><thead><tr><th>Common room size</th><th>Recommended cooling BTU</th><th>Typical unit</th></tr></thead><tbody><tr><td>150 sq ft</td><td>5,000 BTU</td><td>Small window AC</td></tr><tr><td>300 sq ft</td><td>7,000–8,000 BTU</td><td>Window or portable AC</td></tr><tr><td>500 sq ft</td><td>10,000–12,000 BTU</td><td>Large window AC</td></tr><tr><td>750 sq ft</td><td>15,000–18,000 BTU</td><td>Mini split</td></tr><tr><td>1,000 sq ft</td><td>20,000–24,000 BTU</td><td>Central AC zone</td></tr><tr><td>1,500 sq ft</td><td>30,000–36,000 BTU</td><td>Central or multi-zone</td></tr></tbody></table></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container content-flow">
+      <h2>Why BTU sizing matters</h2>
+      <p>Choosing the wrong BTU output can create expensive comfort problems. Oversized cooling equipment cycles too quickly, misses humidity control, and uses more electricity. Undersized equipment runs nonstop and still fails to hold setpoint during peak weather. The same logic applies to heating: too much furnace capacity wastes fuel and can make rooms feel uneven, while too little capacity leaves cold spots and longer runtimes. BTUCalc gives homeowners, HVAC DIYers, contractors, and engineers a fast way to compare loads before getting detailed bids or Manual J documentation.</p>
+      <div class="related-grid">
+        <a href="/fireplace-pool-btu-calculator.html" class="related-card"><strong>Fireplace, pool heater, and boiler sizing</strong><p>Estimate appliance output for fireplaces, hot tubs, pools, and hydronic systems.</p></a>
+        <a href="/btu-energy-cost-calculator.html" class="related-card"><strong>BTU energy cost estimator</strong><p>Compare gas, electric, propane, oil, and heat pump operating costs.</p></a>
+        <a href="/how-to-calculate-btu.html" class="related-card"><strong>How to calculate BTU</strong><p>Learn the formulas, charts, and examples behind each calculator on the site.</p></a>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container content-flow">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details><summary>What is a BTU calculator?</summary><p>A BTU calculator estimates the heating or cooling load of a room or building. Inputs like area, volume, insulation, climate, and occupancy help determine the recommended output range.</p></details>
+        <details><summary>How many BTU do I need for air conditioning?</summary><p>A quick rule of thumb is 20 BTU per square foot for cooling, then adjust for sun, ceiling height, occupancy, insulation, and kitchens. Use the dedicated AC BTU calculator for a more realistic answer.</p></details>
+        <details><summary>How many BTU per square foot do I need for heating?</summary><p>Heating loads usually fall between 20 and 50 BTU per square foot depending on climate and insulation. Very cold climates and drafty homes need more output than newer, well-insulated homes.</p></details>
+        <details><summary>Can I size a mini split online?</summary><p>Yes. A mini split calculator is useful for estimating single-zone and multi-zone loads, especially when you compare bedroom, garage, kitchen, and living room usage patterns.</p></details>
+        <details><summary>Does BTUCalc work for contractors and engineers?</summary><p>Yes. The website is designed for homeowners and pros who need planning-grade sizing fast. For permitting or final equipment selection, follow up with Manual J, manufacturer data, and site conditions.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="/index.html" class="logo" aria-label="BTU Calc Home">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5a5 5 0 0 0-5 5v13.4a8 8 0 1 0 10 0V10a5 5 0 0 0-5-5Z"></path><path d="M20 11v15"></path></svg>
+        <span>BTU<strong>Calc</strong></span>
+      </a>
+      <p class="lede" style="font-size:1rem;margin-top:1rem">Free, accurate BTU calculators for every heating & cooling need.</p>
+    </div>
+    <div class="footer-columns">
+      <div><h4>Cooling</h4><ul><li><a href="/ac-btu-calculator.html">AC BTU Calculator</a></li><li><a href="/mini-split-btu-calculator.html">Mini Split BTU Calculator</a></li><li><a href="/special-spaces-btu-calculator.html">Portable AC and special spaces sizing</a></li></ul></div>
+      <div><h4>Heating</h4><ul><li><a href="/heating-btu-calculator.html">Furnace BTU calculator</a></li><li><a href="/radiator-btu-calculator.html">Radiator heat output calculator</a></li><li><a href="/fireplace-pool-btu-calculator.html">Fireplace and boiler calculator</a></li></ul></div>
+      <div><h4>Tools & Learn</h4><ul><li><a href="/btu-conversion-calculator.html">BTU to watts and tons conversion</a></li><li><a href="/btu-energy-cost-calculator.html">BTU energy cost estimator</a></li><li><a href="/how-to-calculate-btu.html">How to calculate BTU</a></li></ul></div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 BTUCalc. All rights reserved.</span>
+    <span><a href="/privacy-policy.html">Privacy Policy</a> · <a href="/terms-of-use.html">Terms of Use</a></span>
+  </div>
+</footer>
+</body>
+</html>
