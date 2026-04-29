@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/ac-btu-calculator", "destination": "/ac-btu-calculator.html" },
+    { "source": "/heating-btu-calculator", "destination": "/heating-btu-calculator.html" },
+    { "source": "/mini-split-btu-calculator", "destination": "/mini-split-btu-calculator.html" },
+    { "source": "/radiator-btu-calculator", "destination": "/radiator-btu-calculator.html" },
+    { "source": "/btu-conversion-calculator", "destination": "/btu-conversion-calculator.html" },
+    { "source": "/special-spaces-btu-calculator", "destination": "/special-spaces-btu-calculator.html" },
+    { "source": "/fireplace-pool-btu-calculator", "destination": "/fireplace-pool-btu-calculator.html" },
+    { "source": "/btu-energy-cost-calculator", "destination": "/btu-energy-cost-calculator.html" },
+    { "source": "/how-to-calculate-btu", "destination": "/how-to-calculate-btu.html" }
+  ]
+}
