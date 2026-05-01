@@ -1,11 +1,945 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Radiator BTU Calculator | BTU Calc</title><meta name="description" content="Calculate radiator BTU output for any room using dimensions, insulation, windows, exposed walls, floor level, and water temperature settings."><meta name="robots" content="index, follow"><link rel="canonical" href="https://btucalc.vercel.app/radiator-btu-calculator"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300..700&display=swap" rel="stylesheet"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/style.css"><script defer src="/calculator.js"></script><meta property="og:title" content="Radiator BTU Calculator | BTU Calc">
-<meta property="og:description" content="Calculate radiator BTU output for any room using dimensions, insulation, windows, exposed walls, floor level, and water temperature settings.">
-<meta property="og:url" content="https://btucalc.vercel.app/radiator-btu-calculator">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://btucalc.vercel.app/og-image.png">
-<meta property="og:site_name" content="BTUCalc">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Radiator BTU Calculator | BTU Calc">
-<meta name="twitter:description" content="Calculate radiator BTU output for any room using dimensions, insulation, windows, exposed walls, floor level, and water temperature settings.">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"BTUCalc","url":"https://btucalc.vercel.app/"},{"@type":"SoftwareApplication","name":"Radiator BTU Calculator","applicationCategory":"UtilityApplication","operatingSystem":"Web","url":"https://btucalc.vercel.app/radiator-btu-calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate radiator BTU?","acceptedAnswer":{"@type":"Answer","text":"Start with room volume, then adjust for exposed walls, glazing, floor level, insulation, and flow temperature to estimate the heat output your radiator must deliver."}},{"@type":"Question","name":"How many BTU radiator do I need for a bedroom?","acceptedAnswer":{"@type":"Answer","text":"Bedrooms often need less output than bathrooms or conservatories, but insulation, window type, and ceiling height can still change the required BTU a lot."}},{"@type":"Question","name":"Can I convert radiator BTU to watts?","acceptedAnswer":{"@type":"Answer","text":"Yes. Multiply BTU by about 0.293 to convert to watts, which helps when comparing electric radiators and hydronic heat emitters."}},{"@type":"Question","name":"Do low temperature systems need larger radiators?","acceptedAnswer":{"@type":"Answer","text":"Yes. Lower flow temperatures reduce radiator output, so the same room may require a larger panel size or multiple emitters."}},{"@type":"Question","name":"Is one radiator enough for a large room?","acceptedAnswer":{"@type":"Answer","text":"Sometimes, but large spaces often benefit from two emitters to improve heat distribution and comfort across the room."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://btucalc.vercel.app/"},{"@type":"ListItem","position":2,"name":"Radiator BTU Calculator","item":"https://btucalc.vercel.app/radiator-btu-calculator"}]}]}</script>
-</head><body><a href="#calculator" class="skip-link">Skip to calculator</a><header class="site-header"><div class="container"><a href="/index.html" class="logo"><svg viewBox="0 0 40 40"><path d="M20 5a5 5 0 0 0-5 5v13.4a8 8 0 1 0 10 0V10a5 5 0 0 0-5-5Z"></path><path d="M20 11v15"></path></svg><span>BTU<strong>Calc</strong></span></a><nav class="main-nav"><a href="/ac-btu-calculator.html">AC</a><a href="/heating-btu-calculator.html">Heating</a><a href="/mini-split-btu-calculator.html">Mini Split</a><a href="/radiator-btu-calculator.html">Radiator</a><a href="/btu-conversion-calculator.html">Convert</a><a href="/special-spaces-btu-calculator.html">Spaces</a></nav><div class="header-actions"><button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode">🌙</button><button class="hamburger" aria-label="Open menu" aria-expanded="false">☰</button></div></div><div class="mobile-panel"><div class="mobile-panel-inner"><a href="/ac-btu-calculator.html">AC BTU calculator by room size</a><a href="/heating-btu-calculator.html">Heating BTU calculator for furnaces</a><a href="/mini-split-btu-calculator.html">Mini split BTU sizing guide</a><a href="/radiator-btu-calculator.html">Radiator BTU output calculator</a><a href="/btu-conversion-calculator.html">BTU conversion calculator</a><a href="/special-spaces-btu-calculator.html">Special spaces BTU calculator</a><a href="/fireplace-pool-btu-calculator.html">Fireplace and pool heater sizing</a><a href="/btu-energy-cost-calculator.html">BTU energy cost calculator</a><a href="/how-to-calculate-btu.html">How to calculate BTU guide</a></div></div></header><main><section class="page-hero"><div class="container"><div class="breadcrumbs"><a href="/index.html">Home</a><span>›</span><span>Radiator BTU Calculator</span></div><div class="pill">Radiator room sizing</div><h1>Radiator BTU Calculator — Find the Right Heat Output for Your Room</h1><p class="lede">Estimate the correct radiator output in BTU and watts for bedrooms, bathrooms, kitchens, conservatories, and other spaces.</p></div></section><section class="calculator-section section" id="calculator"><div class="container"><div class="calc-layout"><form class="calc-inputs" id="radiator-form"><div class="input-group"><label for="rad-length">Room Length</label><div class="input-with-unit"><input type="number" id="rad-length" min="1"><div class="unit-toggle" id="rad-unit-group" data-unit-group data-unit="ft"><button type="button" class="unit-btn active" data-unit="ft">ft</button><button type="button" class="unit-btn" data-unit="m">m</button></div></div></div><div class="input-group"><label for="rad-width">Room Width</label><input type="number" id="rad-width" min="1"></div><div class="input-group"><label for="rad-height">Ceiling Height</label><input type="number" id="rad-height" min="1" value="8"></div><div class="input-group"><label for="rad-room">Room Type</label><select id="rad-room"><option value="living">Living room</option><option value="bedroom">Bedroom</option><option value="bathroom">Bathroom</option><option value="kitchen">Kitchen</option><option value="hallway">Hallway</option><option value="conservatory">Conservatory</option></select></div><div class="input-group"><label for="rad-walls">Number of external walls</label><select id="rad-walls"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div><div class="input-group"><label for="rad-window">Window type</label><select id="rad-window"><option value="single">Single glazed</option><option value="double">Double glazed</option><option value="triple">Triple glazed</option></select></div><div class="input-group"><label for="rad-floor">Floor type</label><select id="rad-floor"><option value="ground">Ground floor</option><option value="mid">Mid floor</option><option value="top">Top floor</option></select></div><div class="input-group"><label for="rad-insulation">Insulation</label><select id="rad-insulation"><option value="poor">Poor</option><option value="average">Average</option><option value="good">Good</option></select></div><div class="input-group"><label for="rad-temp">System temperature</label><select id="rad-temp"><option value="70">70°C</option><option value="60">60°C</option><option value="50">50°C</option></select></div><p class="error-text form-error" role="alert" hidden></p><button class="btn-calculate" type="submit">Calculate BTU →</button></form><div class="calc-results" aria-live="polite"><div id="rad-result-placeholder" class="result-placeholder"><div class="result-prompt">Enter room details to estimate radiator output.</div></div><div id="rad-result-output" class="result-card" hidden><div class="result-primary"><span class="result-label">Required radiator output</span><span class="result-value" id="rad-btu-output">—</span></div><div class="result-secondary"><div class="result-item"><span>Required watts:</span><strong id="rad-watt-output">—</strong></div><div class="result-item"><span>Radiator dimensions:</span><strong id="rad-size-output">—</strong></div><div class="result-item"><span>Number of radiators:</span><strong id="rad-count-output">—</strong></div></div><div class="result-actions"><button type="button" class="btn-copy" data-copy-target="rad-result-output">📋 Copy Result</button><button type="button" class="btn-reset" data-reset-form="radiator-form" data-reset-result="rad-result-output" data-reset-placeholder="rad-result-placeholder">↺ Reset</button></div></div></div></div></div></section><section class="section"><div class="container content-flow"><h2>How We Calculate Radiator BTU</h2><p>The radiator calculator begins with room volume because hydronic and electric radiators must offset heat loss through walls, windows, ceilings, and floors. We then adjust for room type, external walls, glazing quality, floor exposure, insulation level, and system temperature. Lower flow temperatures such as 50°C require larger emitters because the radiator releases less heat at lower water temperatures.</p><p>Results are shown in both BTU and watts so you can compare UK-style radiator catalogues and metric output tables. When the room is large, the calculator suggests using two radiators for more even distribution.</p><h2>Radiator BTU Chart</h2><div class="table-wrap"><table><thead><tr><th>Room</th><th>Area</th><th>Typical BTU</th><th>Approx watts</th></tr></thead><tbody><tr><td>Small bedroom</td><td>100 sq ft</td><td>2,500</td><td>733</td></tr><tr><td>Master bedroom</td><td>180 sq ft</td><td>4,000</td><td>1,172</td></tr><tr><td>Bathroom</td><td>90 sq ft</td><td>3,000</td><td>879</td></tr><tr><td>Kitchen</td><td>150 sq ft</td><td>4,200</td><td>1,231</td></tr><tr><td>Living room</td><td>250 sq ft</td><td>6,000</td><td>1,758</td></tr><tr><td>Hallway</td><td>80 sq ft</td><td>1,800</td><td>527</td></tr><tr><td>Conservatory</td><td>200 sq ft</td><td>7,500</td><td>2,198</td></tr><tr><td>Large open room</td><td>350 sq ft</td><td>8,500+</td><td>2,491+</td></tr></tbody></table></div><h2>Frequently Asked Questions</h2><div class="faq-list"><details><summary>How do I calculate the BTU of my radiator?</summary><p>Measure the room, estimate its heat loss, and compare the result against the published radiator output at the same system temperature, usually ΔT50 or manufacturer-specific ratings.</p></details><details><summary>How many BTU does a radiator need for a bedroom?</summary><p>Many bedrooms need roughly 2,500 to 4,500 BTU, but insulation, glazing, ceiling height, and room exposure can change that significantly.</p></details><details><summary>How to calculate BTU for a room in meters?</summary><p>Use the ft/m toggle for room dimensions. The calculator converts metric dimensions automatically before applying the room heat-loss formula.</p></details><details><summary>What BTU radiator for a 15m² room?</summary><p>A 15 square meter room often lands around 3,500 to 5,000 BTU depending on insulation and exposure. Bathrooms and conservatories usually need more.</p></details></div><h2>Related Calculators</h2><div class="related-grid"><a href="/heating-btu-calculator.html" class="related-card"><strong>Heating BTU calculator for whole homes</strong><p>Estimate furnace or boiler size for the full property.</p></a><a href="/btu-conversion-calculator.html" class="related-card"><strong>BTU to watts conversion calculator</strong><p>Convert radiator output between imperial and metric units.</p></a><a href="/how-to-calculate-btu.html" class="related-card"><strong>How to calculate radiator BTU</strong><p>Read the formulas behind room heat-loss sizing.</p></a></div></div></section></main><footer class="footer"><div class="container footer-grid"><div><a href="/index.html" class="logo"><svg viewBox="0 0 40 40"><path d="M20 5a5 5 0 0 0-5 5v13.4a8 8 0 1 0 10 0V10a5 5 0 0 0-5-5Z"></path><path d="M20 11v15"></path></svg><span>BTU<strong>Calc</strong></span></a><p class="lede" style="font-size:1rem;margin-top:1rem">Free, accurate BTU calculators for every heating & cooling need.</p></div><div class="footer-columns"><div><h4>Cooling</h4><ul><li><a href="/ac-btu-calculator.html">AC BTU Calculator</a></li><li><a href="/mini-split-btu-calculator.html">Mini Split BTU Calculator</a></li><li><a href="/special-spaces-btu-calculator.html">Portable AC and special spaces sizing</a></li></ul></div><div><h4>Heating</h4><ul><li><a href="/heating-btu-calculator.html">Furnace BTU calculator</a></li><li><a href="/radiator-btu-calculator.html">Radiator heat output calculator</a></li><li><a href="/fireplace-pool-btu-calculator.html">Fireplace and boiler calculator</a></li></ul></div><div><h4>Tools & Learn</h4><ul><li><a href="/btu-conversion-calculator.html">BTU to watts and tons conversion</a></li><li><a href="/btu-energy-cost-calculator.html">BTU energy cost estimator</a></li><li><a href="/how-to-calculate-btu.html">How to calculate BTU</a></li></ul></div></div></div><div class="container footer-bottom"><span>© 2026 BTUCalc. All rights reserved.</span><span><a href="/privacy-policy.html">Privacy Policy</a> · <a href="/terms-of-use.html">Terms of Use</a></span></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Radiator BTU Calculator — Panel, Column, Cast Iron & Electric (2026)</title>
+<meta name="description" content="Calculate BTU output for any radiator by size and type, or find the BTU your room needs. Covers panel, column, cast iron, and electric radiators. Free, instant results." />
+<link rel="canonical" href="https://btucalc.vercel.app/radiator-btu-calculator" />
+<meta property="og:title" content="Radiator BTU Calculator — Panel, Column, Cast Iron & Electric (2026)" />
+<meta property="og:description" content="Find the exact BTU output for your radiator or calculate what your room needs. Supports ΔT50/ΔT40/ΔT30, UK metric, and imperial. Free, instant results." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://btucalc.vercel.app/radiator-btu-calculator" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Radiator BTU Calculator",
+  "url": "https://btucalc.vercel.app/radiator-btu-calculator",
+  "description": "Calculate BTU output for panel, column, cast iron, and electric radiators. Supports ΔT50, ΔT40, and ΔT30 for heat pump systems.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "BTU Calculator", "item": "https://btucalc.vercel.app/" },
+      { "@type": "ListItem", "position": 2, "name": "Radiator BTU Calculator", "item": "https://btucalc.vercel.app/radiator-btu-calculator" }
+    ]
+  },
+  "mainEntity": {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate BTU from radiator size?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For panel radiators, measure height and width in mm. A 600×1000 mm Type 22 double panel radiator outputs approximately 5,800 BTU/hr (1,703 W) at ΔT50."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is ΔT50 in radiator BTU ratings?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ΔT50 means the mean water temperature is 50°C above room temperature — typically flow/return of 75°C/65°C with a room at 20°C. This is the standard EN 442 test condition for radiator BTU ratings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to oversize radiators for a heat pump?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Heat pumps run at ΔT30, which reduces output to ×0.518 of the ΔT50 rating. Size radiators approximately 2× larger than for a gas boiler system."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many BTU does a cast iron radiator produce per section?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 4-column 760 mm cast iron radiator produces approximately 665 BTU (195 W) per section at ΔT50. Multiply by total section count for overall output."
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<style>
+  :root {
+    --primary: #1a56db;
+    --primary-dark: #1e429f;
+    --primary-light: #ebf3fe;
+    --text: #111928;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --bg: #f9fafb;
+    --white: #ffffff;
+    --radius: 10px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; color: var(--text); background: var(--white); font-size: 15px; line-height: 1.6; }
+  a { color: var(--primary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; height: 56px; gap: 28px; }
+  .nav-logo { font-weight: 700; font-size: 15px; color: var(--text); display: flex; align-items: center; gap: 7px; text-decoration: none; }
+  .nav-logo-icon { width: 28px; height: 28px; background: var(--primary); border-radius: 7px; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; }
+  .nav-links { display: flex; gap: 22px; list-style: none; }
+  .nav-links a { font-size: 13.5px; color: var(--text-muted); font-weight: 500; }
+  .nav-links a:hover, .nav-links .active a { color: var(--primary); text-decoration: none; }
+  .nav-right { margin-left: auto; }
+  .badge-free { background: #ecfdf5; color: #065f46; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; border: 1px solid #a7f3d0; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, #1e3a8a 0%, #1a56db 60%, #2563eb 100%); color: white; padding: 52px 20px 48px; }
+  .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 420px; gap: 48px; align-items: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 16px; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.75); margin-bottom: 16px; }
+  .hero-badge span { display: flex; align-items: center; gap: 5px; }
+  .hero-badge span::before { content: "✓"; color: #6ee7b7; font-weight: 700; }
+  .hero h1 { font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+  .hero h1 span { color: #93c5fd; }
+  .hero p { font-size: 16px; color: rgba(255,255,255,0.85); margin-bottom: 20px; max-width: 460px; }
+  .hero-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .hero-features li { font-size: 14px; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 8px; }
+  .hero-features li::before { content: ""; width: 6px; height: 6px; background: #93c5fd; border-radius: 50%; flex-shrink: 0; }
+
+  /* QUICK CALC CARD */
+  .calc-card { background: white; border-radius: 14px; padding: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: var(--text); }
+  .calc-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+  .calc-tabs { display: flex; gap: 4px; background: var(--bg); border-radius: 8px; padding: 3px; margin-bottom: 16px; }
+  .calc-tab { flex: 1; padding: 7px 10px; border: none; background: transparent; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--text-muted); transition: all 0.18s; }
+  .calc-tab.active { background: white; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+  .form-group select, .form-group input { padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text); background: white; outline: none; transition: border-color 0.15s; width: 100%; }
+  .form-group select:focus, .form-group input:focus { border-color: var(--primary); }
+  .calc-btn { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 9px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 10px; transition: background 0.15s; }
+  .calc-btn:hover { background: var(--primary-dark); }
+  .result-box { background: var(--primary-light); border: 1.5px solid #bfdbfe; border-radius: 9px; padding: 14px 16px; margin-top: 12px; display: none; }
+  .result-box.show { display: block; }
+  .result-main { font-size: 24px; font-weight: 800; color: var(--primary); line-height: 1.1; }
+  .result-main span { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+  .result-meta { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+  .result-meta-item { font-size: 12px; color: var(--text-muted); }
+  .result-meta-item strong { color: var(--text); font-weight: 700; }
+
+  /* SECTIONS */
+  .section { padding: 60px 20px; }
+  .section-alt { background: var(--bg); }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--primary); text-transform: uppercase; margin-bottom: 6px; }
+  .section-title { font-size: 26px; font-weight: 800; color: var(--text); margin-bottom: 8px; line-height: 1.25; }
+  .section-sub { font-size: 15px; color: var(--text-muted); max-width: 580px; margin-bottom: 32px; }
+  .text-center { text-align: center; }
+  .text-center .section-sub { margin-left: auto; margin-right: auto; }
+
+  /* CALC PANELS */
+  .calc-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+  .calc-panel { background: white; border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+  .calc-panel-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .calc-panel-title .icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .icon-blue { background: var(--primary-light); }
+  .icon-orange { background: #fff7ed; }
+  .calc-panel > p { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; margin-left: 38px; }
+  .result-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 14px; }
+  .result-chip { background: var(--bg); border-radius: 8px; padding: 10px 12px; text-align: center; }
+  .result-chip .val { font-size: 15px; font-weight: 800; color: var(--primary); display: block; }
+  .result-chip .lbl { font-size: 11px; color: var(--text-muted); display: block; margin-top: 2px; }
+
+  /* TYPE CARDS */
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .type-card { background: white; border: 1.5px solid var(--border); border-radius: var(--radius); padding: 20px 22px; box-shadow: var(--shadow); transition: box-shadow 0.2s, border-color 0.2s; }
+  .type-card:hover { box-shadow: var(--shadow-md); border-color: #bfdbfe; }
+  .type-card-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px; }
+  .type-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .type-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px; }
+  .type-card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .info-block h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .info-block p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
+  .formula-box { background: var(--primary-light); border: 1.5px solid #bfdbfe; border-radius: var(--radius); padding: 16px 20px; margin: 14px 0; font-family: "Courier New", monospace; font-size: 13px; font-weight: 600; color: var(--primary-dark); }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  thead th { background: var(--primary); color: white; padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 700; letter-spacing: 0.03em; }
+  tbody tr:nth-child(even) { background: var(--bg); }
+  tbody td { padding: 11px 16px; border-top: 1px solid var(--border); }
+  .td-hi { color: var(--primary); font-weight: 700; }
+  .td-muted { color: var(--text-muted); font-size: 12px; }
+
+  /* DT GRID */
+  .dt-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin: 16px 0; }
+  .dt-card { border-radius: 9px; padding: 14px 12px; text-align: center; border: 1.5px solid transparent; }
+  .dt-card .dt-label { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .dt-card .dt-factor { font-size: 18px; font-weight: 800; }
+  .dt-card .dt-desc { font-size: 11px; margin-top: 4px; }
+  .dt-60 { background: #fef3c7; border-color: #fcd34d; } .dt-60 .dt-factor { color: #b45309; }
+  .dt-50 { background: #dcfce7; border-color: #86efac; } .dt-50 .dt-factor { color: #166534; }
+  .dt-40 { background: var(--primary-light); border-color: #93c5fd; } .dt-40 .dt-factor { color: var(--primary-dark); }
+  .dt-30 { background: #ede9fe; border-color: #c4b5fd; } .dt-30 .dt-factor { color: #5b21b6; }
+  .dt-20 { background: #fee2e2; border-color: #fca5a5; } .dt-20 .dt-factor { color: #991b1b; }
+
+  /* RULES LIST */
+  .rules-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .rules-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.5; }
+  .rules-list .bullet { width: 22px; height: 22px; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { width: 100%; padding: 16px 20px; background: white; border: none; cursor: pointer; text-align: left; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--text); }
+  .faq-q:hover { background: var(--bg); }
+  .faq-q .arrow { flex-shrink: 0; font-size: 18px; color: var(--primary); transition: transform 0.2s; }
+  .faq-q.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; background: white; }
+  .faq-a.open { max-height: 400px; padding: 0 20px 16px; }
+  .faq-a p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  /* RELATED */
+  .related-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+  .related-card { background: white; border: 1.5px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); transition: box-shadow 0.18s; text-decoration: none; color: var(--text); display: block; }
+  .related-card:hover { box-shadow: var(--shadow-md); border-color: #bfdbfe; text-decoration: none; }
+  .related-card .rc-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .related-card .rc-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .related-card .rc-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+  /* TRUST BAR */
+  .trust-bar { background: var(--bg); border-top: 1px solid var(--border); padding: 28px 20px; }
+  .trust-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .trust-item { display: flex; gap: 14px; align-items: flex-start; }
+  .trust-icon { width: 40px; height: 40px; border-radius: 9px; background: white; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .trust-item h4 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .trust-item p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+  /* REFS */
+  .refs-bar { padding: 36px 20px; border-top: 1px solid var(--border); }
+  .refs-inner { max-width: 1100px; margin: 0 auto; }
+  .refs-title { font-size: 13px; font-weight: 700; color: var(--text-muted); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .refs-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+  .ref-card { border: 1px solid var(--border); border-radius: 9px; padding: 14px 16px; background: white; }
+  .ref-card .ref-source { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+  .ref-card .ref-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .ref-card .ref-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px; }
+  .ref-card a { font-size: 12px; color: var(--primary); font-weight: 600; }
+
+  /* FOOTER */
+  footer { background: #111928; color: rgba(255,255,255,0.7); padding: 40px 20px 24px; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 28px; }
+  .footer-brand p { font-size: 13px; line-height: 1.6; margin-top: 10px; max-width: 260px; }
+  .footer-logo { font-size: 15px; font-weight: 700; color: white; display: flex; align-items: center; gap: 8px; }
+  .footer-logo-icon { width: 26px; height: 26px; border-radius: 6px; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 12px; }
+  .footer-col h4 { font-size: 12px; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col li a { font-size: 13px; color: rgba(255,255,255,0.6); }
+  .footer-col li a:hover { color: white; text-decoration: none; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; font-size: 12px; color: rgba(255,255,255,0.4); display: flex; justify-content: space-between; align-items: center; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .calc-card { display: none; }
+    .calc-panels { grid-template-columns: 1fr; }
+    .cards-grid { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .dt-grid { grid-template-columns: repeat(3,1fr); }
+    .related-grid { grid-template-columns: 1fr 1fr; }
+    .trust-inner { grid-template-columns: 1fr; }
+    .refs-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 24px; }
+    .section-title { font-size: 21px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .result-grid { grid-template-columns: 1fr 1fr; }
+    .dt-grid { grid-template-columns: 1fr 1fr; }
+    .related-grid { grid-template-columns: 1fr; }
+    .refs-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="/"><div class="nav-logo-icon">⚡</div>BTUCalc</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/ac-btu-calculator">AC BTU</a></li>
+      <li><a href="/heating-btu-calculator">Heating</a></li>
+      <li><a href="/mini-split-btu-calculator">Mini Split</a></li>
+      <li class="active"><a href="/radiator-btu-calculator">Radiators</a></li>
+      <li><a href="/btu-conversion-calculator">Convert</a></li>
+      <li><a href="/special-spaces-btu">More ▾</a></li>
+    </ul>
+    <div class="nav-right"><span class="badge-free">✓ Free · No Sign-up</span></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">
+        <span>Free</span><span>No Sign-up</span><span>Updated 2026</span>
+      </div>
+      <h1>Radiator BTU <span>Calculator</span></h1>
+      <p>Find the exact BTU output for your radiator — or calculate how much BTU your room needs. Supports panel, column, cast iron &amp; electric with ΔT correction.</p>
+      <ul class="hero-features">
+        <li>Panel radiator BTU output by size (Type 11, 21, 22)</li>
+        <li>Column &amp; cast iron BTU per section</li>
+        <li>ΔT50, ΔT40, ΔT30 correction — heat pump ready</li>
+        <li>Room BTU requirement calculator</li>
+        <li>UK metric (mm/m²) &amp; imperial (in/sq ft) supported</li>
+      </ul>
+    </div>
+
+    <!-- Quick Calc Card -->
+    <div class="calc-card">
+      <h3>⚡ Quick Radiator BTU Estimator</h3>
+      <div class="calc-tabs">
+        <button class="calc-tab active" onclick="switchTab('output',this)">BTU Output</button>
+        <button class="calc-tab" onclick="switchTab('needed',this)">BTU Needed</button>
+      </div>
+
+      <div id="tab-output">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Radiator Type</label>
+            <select id="q-type">
+              <option value="panel22">Panel Type 22 (Double)</option>
+              <option value="panel21">Panel Type 21</option>
+              <option value="panel11">Panel Type 11 (Single)</option>
+              <option value="column">Column Radiator</option>
+              <option value="castiron">Cast Iron</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>System ΔT</label>
+            <select id="q-dt">
+              <option value="1.264">ΔT60 — Old boiler</option>
+              <option value="1.000" selected>ΔT50 — Standard</option>
+              <option value="0.737">ΔT40 — Modern boiler</option>
+              <option value="0.518">ΔT30 — Heat pump</option>
+              <option value="0.306">ΔT20 — Low-temp</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Height (mm)</label><input type="number" id="q-height" value="600" min="100" max="3000" /></div>
+          <div class="form-group"><label>Width (mm)</label><input type="number" id="q-width" value="1000" min="100" max="4000" /></div>
+        </div>
+        <button class="calc-btn" onclick="calcHeroOutput()">Calculate BTU Output →</button>
+        <div class="result-box" id="hero-result-output">
+          <div class="result-main" id="h-btu">—</div>
+          <div class="result-meta">
+            <div class="result-meta-item">Watts: <strong id="h-watts">—</strong></div>
+            <div class="result-meta-item">kW: <strong id="h-kw">—</strong></div>
+            <div class="result-meta-item">Coverage: <strong id="h-cover">—</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-needed" style="display:none">
+        <div class="form-row">
+          <div class="form-group"><label>Room Size (m²)</label><input type="number" id="n-sqm" value="15" min="1" max="500" /></div>
+          <div class="form-group">
+            <label>Ceiling Height</label>
+            <select id="n-ceiling">
+              <option value="2.4" selected>2.4 m (Standard)</option>
+              <option value="2.7">2.7 m</option>
+              <option value="3.0">3.0 m (High)</option>
+              <option value="3.5">3.5 m (Vaulted)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Insulation Level</label>
+            <select id="n-insul">
+              <option value="150">Poor (solid walls)</option>
+              <option value="120" selected>Average</option>
+              <option value="90">Good (cavity + DG)</option>
+              <option value="65">Excellent (new build)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>System ΔT</label>
+            <select id="n-dt">
+              <option value="1.264">ΔT60</option>
+              <option value="1.000" selected>ΔT50</option>
+              <option value="0.737">ΔT40</option>
+              <option value="0.518">ΔT30</option>
+            </select>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcHeroNeeded()">Calculate BTU Needed →</button>
+        <div class="result-box" id="hero-result-needed">
+          <div class="result-main" id="hn-btu">—</div>
+          <div class="result-meta">
+            <div class="result-meta-item">Watts: <strong id="hn-watts">—</strong></div>
+            <div class="result-meta-item">Radiator Size: <strong id="hn-size">—</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CALCULATORS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">Radiator Sizing Tools</div>
+      <h2 class="section-title">Detailed Radiator BTU Calculators</h2>
+      <p class="section-sub">Two modes — find your radiator's actual output, or calculate exactly what your room needs.</p>
+    </div>
+    <div class="calc-panels">
+
+      <!-- Panel A: Output -->
+      <div class="calc-panel">
+        <h3 class="calc-panel-title"><span class="icon icon-blue">🌡️</span>BTU Output Calculator (By Radiator Size)</h3>
+        <p>Enter radiator dimensions and type to calculate heat output at any system temperature.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Radiator Type</label>
+            <select id="p-type" onchange="toggleTypeInputs()">
+              <option value="type22">Panel Type 22 (K2) — Double panel double convector</option>
+              <option value="type21">Panel Type 21 (K1) — Double panel single convector</option>
+              <option value="type11">Panel Type 11 (S1) — Single panel</option>
+              <option value="column3">3-Column Radiator</option>
+              <option value="column4">4-Column Radiator</option>
+              <option value="castiron">Cast Iron (per section)</option>
+              <option value="electric">Electric (wattage)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>System Temperature (ΔT)</label>
+            <select id="p-dt">
+              <option value="1.264">ΔT60 — Old high-temp boiler</option>
+              <option value="1.000" selected>ΔT50 — Standard rated output</option>
+              <option value="0.737">ΔT40 — Modern condensing boiler</option>
+              <option value="0.518">ΔT30 — Heat pump compatible</option>
+              <option value="0.306">ΔT20 — Low-temp heat pump</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row" id="p-dims-row">
+          <div class="form-group"><label>Height (mm)</label><input type="number" id="p-height" value="600" min="200" max="2400" /></div>
+          <div class="form-group"><label>Width (mm)</label><input type="number" id="p-width" value="1000" min="200" max="4000" /></div>
+        </div>
+        <div class="form-row" id="p-section-row" style="display:none">
+          <div class="form-group full"><label>Number of Sections</label><input type="number" id="p-sections" value="10" min="1" max="50" /></div>
+        </div>
+        <div class="form-row" id="p-watt-row" style="display:none">
+          <div class="form-group full"><label>Electric Radiator Wattage (W)</label><input type="number" id="p-elec-watts" value="1500" min="100" max="10000" /></div>
+        </div>
+        <button class="calc-btn" onclick="calcPanelOutput()">Calculate Output →</button>
+        <div class="result-box" id="p-result">
+          <div class="result-grid">
+            <div class="result-chip"><span class="val" id="p-r-btu">—</span><span class="lbl">BTU/hr</span></div>
+            <div class="result-chip"><span class="val" id="p-r-w">—</span><span class="lbl">Watts</span></div>
+            <div class="result-chip"><span class="val" id="p-r-kw">—</span><span class="lbl">kW</span></div>
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:var(--text-muted)" id="p-r-note"></div>
+        </div>
+      </div>
+
+      <!-- Panel B: Room Needed -->
+      <div class="calc-panel">
+        <h3 class="calc-panel-title"><span class="icon icon-orange">🏠</span>BTU Needed Calculator (By Room)</h3>
+        <p>Calculate total heat output required for your room and get a recommended radiator size.</p>
+        <div class="form-row">
+          <div class="form-group"><label>Room Length (m)</label><input type="number" id="r-length" value="5" min="1" max="50" step="0.5" /></div>
+          <div class="form-group"><label>Room Width (m)</label><input type="number" id="r-width-input" value="4" min="1" max="50" step="0.5" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ceiling Height (m)</label>
+            <select id="r-ceiling">
+              <option value="2.4" selected>2.4 m — Standard</option>
+              <option value="2.7">2.7 m</option>
+              <option value="3.0">3.0 m — High ceiling</option>
+              <option value="3.5">3.5 m — Vaulted</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Insulation Quality</label>
+            <select id="r-insul">
+              <option value="150">Poor — solid walls, single glazing</option>
+              <option value="120" selected>Average — cavity walls, DG</option>
+              <option value="90">Good — insulated, DG</option>
+              <option value="65">Excellent — new build, TG</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Room Type</label>
+            <select id="r-roomtype">
+              <option value="1.0">Living room</option>
+              <option value="0.85">Bedroom</option>
+              <option value="1.2">Bathroom (+20%)</option>
+              <option value="1.0">Kitchen</option>
+              <option value="1.1">Extension</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>System ΔT</label>
+            <select id="r-dt">
+              <option value="1.264">ΔT60</option>
+              <option value="1.000" selected>ΔT50</option>
+              <option value="0.737">ΔT40</option>
+              <option value="0.518">ΔT30</option>
+            </select>
+          </div>
+        </div>
+        <button class="calc-btn" style="background:#f97316" onclick="calcRoomNeeded()">Calculate Room Requirement →</button>
+        <div class="result-box" id="r-result" style="background:#fff7ed;border-color:#fed7aa">
+          <div class="result-grid">
+            <div class="result-chip"><span class="val" id="r-r-btu" style="color:#ea580c">—</span><span class="lbl">BTU Needed</span></div>
+            <div class="result-chip"><span class="val" id="r-r-w" style="color:#ea580c">—</span><span class="lbl">Watts</span></div>
+            <div class="result-chip"><span class="val" id="r-r-size" style="color:#ea580c">—</span><span class="lbl">Radiator Size</span></div>
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:var(--text-muted)" id="r-r-note"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR TYPE CARDS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">By Radiator Type</div>
+      <h2 class="section-title">All Radiator BTU Calculators</h2>
+      <p class="section-sub">Each radiator type uses a different BTU formula. Each calculator uses specialised formulas for accurate sizing.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="type-card">
+        <div class="type-card-icon" style="background:#eff6ff">🔲</div>
+        <h3>Panel Radiator BTU Calculator</h3>
+        <p>Single panel (Type 11), double panel (Type 21), and double panel double convector (Type 22/K2). The most common radiator type in UK and European homes.</p>
+        <div class="type-card-tags"><span class="tag">TYPE 11</span><span class="tag">TYPE 21</span><span class="tag">TYPE 22</span><span class="tag">ΔT50</span></div>
+      </div>
+      <div class="type-card">
+        <div class="type-card-icon" style="background:#fef3c7">🏛️</div>
+        <h3>Column Radiator BTU Calculator</h3>
+        <p>2, 3, and 4-column radiators. BTU calculated from column count × height × width. Popular for period properties and vertical spaces.</p>
+        <div class="type-card-tags"><span class="tag">2-COLUMN</span><span class="tag">3-COLUMN</span><span class="tag">4-COLUMN</span></div>
+      </div>
+      <div class="type-card">
+        <div class="type-card-icon" style="background:#fce7f3">⚙️</div>
+        <h3>Cast Iron Radiator BTU Calculator</h3>
+        <p>Per-section BTU calculation for antique and reproduction cast iron radiators. Higher thermal mass than steel — slower heat-up, longer heat retention.</p>
+        <div class="type-card-tags"><span class="tag">PER SECTION</span><span class="tag">660 MM</span><span class="tag">760 MM</span></div>
+      </div>
+      <div class="type-card">
+        <div class="type-card-icon" style="background:#ecfdf5">⚡</div>
+        <h3>Electric Radiator BTU Calculator</h3>
+        <p>Converts rated wattage to BTU output. 1 watt = 3.412 BTU/hr. Compare electric vs. hydronic radiators for the same room size.</p>
+        <div class="type-card-tags"><span class="tag">WATTAGE → BTU</span><span class="tag">kW → BTU</span></div>
+      </div>
+      <div class="type-card">
+        <div class="type-card-icon" style="background:#f3e8ff">📏</div>
+        <h3>Rad BTU Calculator (Size Only)</h3>
+        <p>Enter height and width in mm — no model needed. Uses EN 442 standard output coefficients for a fast estimate directly from radiator dimensions.</p>
+        <div class="type-card-tags"><span class="tag">EN 442</span><span class="tag">MM → BTU</span><span class="tag">FAST</span></div>
+      </div>
+      <div class="type-card">
+        <div class="type-card-icon" style="background:#fff7ed">🌊</div>
+        <h3>Baseboard Radiator BTU Calculator</h3>
+        <p>Linear BTU output per metre or foot for hydronic baseboard radiators. Common in North American homes and renovated UK properties.</p>
+        <div class="type-card-tags"><span class="tag">PER METRE</span><span class="tag">PER FOOT</span><span class="tag">HYDRONIC</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO CALCULATE -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Methodology</div>
+    <h2 class="section-title">How to Calculate Radiator BTU</h2>
+    <div class="two-col" style="margin-top:28px">
+      <div>
+        <div class="info-block">
+          <h3>Step 1 — Calculate Room Heat Loss</h3>
+          <p>The BTU your room needs depends on volume, insulation, windows, and external walls. Start with this formula:</p>
+          <div class="formula-box">BTU Required = Room Volume (ft³) × Heat Loss Factor</div>
+          <div class="table-wrap" style="margin-top:14px">
+            <table>
+              <thead><tr><th>Insulation Level</th><th>BTU per ft³</th><th>W per m³</th></tr></thead>
+              <tbody>
+                <tr><td>Poor (solid walls, single glazing)</td><td class="td-hi">5–6</td><td>58–70</td></tr>
+                <tr><td>Average (cavity walls, double glazing)</td><td class="td-hi">3–4</td><td>35–46</td></tr>
+                <tr><td>Good (insulated, double glazing)</td><td class="td-hi">2–3</td><td>23–35</td></tr>
+                <tr><td>Excellent (new build, triple glazing)</td><td class="td-hi">1.5–2</td><td>17–23</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="info-block" style="margin-top:28px">
+          <h3>Step 2 — Convert BTU to Watts</h3>
+          <div class="formula-box">Watts = BTU/hr ÷ 3.412</div>
+          <p>UK radiator manufacturers publish output in watts at ΔT50. Use watts when browsing radiator catalogues or comparing products.</p>
+        </div>
+      </div>
+      <div>
+        <div class="info-block">
+          <h3>Step 3 — Apply ΔT Correction Factor</h3>
+          <p>If your system runs at a different temperature from the rated ΔT50, multiply the radiator's rated output by the correction factor:</p>
+          <div class="dt-grid">
+            <div class="dt-card dt-60"><div class="dt-label">ΔT60</div><div class="dt-factor">×1.264</div><div class="dt-desc">Old high-temp boiler</div></div>
+            <div class="dt-card dt-50"><div class="dt-label">ΔT50</div><div class="dt-factor">×1.000</div><div class="dt-desc">Standard rated output</div></div>
+            <div class="dt-card dt-40"><div class="dt-label">ΔT40</div><div class="dt-factor">×0.737</div><div class="dt-desc">Modern condensing boiler</div></div>
+            <div class="dt-card dt-30"><div class="dt-label">ΔT30</div><div class="dt-factor">×0.518</div><div class="dt-desc">Heat pump compatible</div></div>
+            <div class="dt-card dt-20"><div class="dt-label">ΔT20</div><div class="dt-factor">×0.306</div><div class="dt-desc">Low-temp heat pump</div></div>
+          </div>
+          <p style="margin-top:14px;font-size:13px;color:var(--text-muted)"><strong style="color:var(--text)">Example:</strong> A radiator rated 4,000 BTU at ΔT50 will only output <strong style="color:var(--primary)">2,072 BTU at ΔT30</strong> when connected to a heat pump.</p>
+        </div>
+        <div class="info-block" style="margin-top:24px">
+          <h3>Key Radiator Sizing Rules</h3>
+          <ul class="rules-list">
+            <li><span class="bullet">1</span><span>UK standard: <strong>60 W (205 BTU) per m²</strong> for well-insulated rooms at ΔT50</span></li>
+            <li><span class="bullet">2</span><span>Older/poor insulation homes: <strong>80–100 W per m²</strong></span></li>
+            <li><span class="bullet">3</span><span>Bathrooms: Add <strong>10–15%</strong> extra for humidity-related heat loss</span></li>
+            <li><span class="bullet">4</span><span>Heat pump systems (ΔT30): Size radiators <strong>~2× larger</strong> than for a gas boiler</span></li>
+            <li><span class="bullet">5</span><span>North-facing rooms: Add <strong>5–10%</strong> for reduced solar gain</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCE TABLES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">Reference Data</div>
+      <h2 class="section-title">Panel Radiator BTU Output by Size (2026)</h2>
+      <p class="section-sub">Type 22 (K2) double panel double convector at ΔT50 — the most popular radiator type in UK homes.</p>
+    </div>
+    <div class="table-wrap" style="margin-top:24px">
+      <table>
+        <thead>
+          <tr>
+            <th>Radiator Size (H × W)</th>
+            <th>Watts (ΔT50)</th>
+            <th>BTU/hr (ΔT50)</th>
+            <th>Watts at ΔT40</th>
+            <th>Watts at ΔT30</th>
+            <th>Room Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>300 × 400 mm</td><td>349 W</td><td class="td-hi">1,191 BTU</td><td class="td-muted">257 W</td><td class="td-muted">181 W</td><td>≤ 4 m²</td></tr>
+          <tr><td>300 × 800 mm</td><td>698 W</td><td class="td-hi">2,381 BTU</td><td class="td-muted">514 W</td><td class="td-muted">361 W</td><td>≤ 8 m²</td></tr>
+          <tr><td>400 × 600 mm</td><td>668 W</td><td class="td-hi">2,280 BTU</td><td class="td-muted">492 W</td><td class="td-muted">346 W</td><td>≤ 8 m²</td></tr>
+          <tr><td>500 × 600 mm</td><td>851 W</td><td class="td-hi">2,904 BTU</td><td class="td-muted">627 W</td><td class="td-muted">441 W</td><td>≤ 10 m²</td></tr>
+          <tr><td>600 × 600 mm</td><td>1,022 W</td><td class="td-hi">3,488 BTU</td><td class="td-muted">753 W</td><td class="td-muted">529 W</td><td>≤ 12 m²</td></tr>
+          <tr><td>600 × 800 mm</td><td>1,362 W</td><td class="td-hi">4,649 BTU</td><td class="td-muted">1,004 W</td><td class="td-muted">706 W</td><td>≤ 16 m²</td></tr>
+          <tr><td>600 × 1000 mm</td><td>1,703 W</td><td class="td-hi">5,811 BTU</td><td class="td-muted">1,255 W</td><td class="td-muted">882 W</td><td>≤ 20 m²</td></tr>
+          <tr><td>600 × 1200 mm</td><td>2,044 W</td><td class="td-hi">6,974 BTU</td><td class="td-muted">1,506 W</td><td class="td-muted">1,059 W</td><td>≤ 24 m²</td></tr>
+          <tr><td>600 × 1600 mm</td><td>2,725 W</td><td class="td-hi">9,299 BTU</td><td class="td-muted">2,008 W</td><td class="td-muted">1,411 W</td><td>≤ 32 m²</td></tr>
+          <tr><td>700 × 1400 mm</td><td>2,828 W</td><td class="td-hi">9,650 BTU</td><td class="td-muted">2,084 W</td><td class="td-muted">1,465 W</td><td>≤ 33 m²</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:10px">* Type 22 at ΔT50 (mean water temp 70°C, room 20°C). Room coverage assumes 60 W/m² average insulation.</p>
+
+    <h3 style="font-size:18px;font-weight:700;margin:36px 0 16px">Cast Iron Radiator BTU Per Section</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Column Type / Height</th><th>BTU per Section</th><th>Watts per Section</th><th>10-Section Total</th></tr></thead>
+        <tbody>
+          <tr><td>4-column, 660 mm</td><td class="td-hi">~580 BTU</td><td>~170 W</td><td>5,800 BTU / 1,700 W</td></tr>
+          <tr><td>4-column, 760 mm</td><td class="td-hi">~665 BTU</td><td>~195 W</td><td>6,650 BTU / 1,950 W</td></tr>
+          <tr><td>3-column, 760 mm</td><td class="td-hi">~512 BTU</td><td>~150 W</td><td>5,120 BTU / 1,500 W</td></tr>
+          <tr><td>2-column, 960 mm</td><td class="td-hi">~450 BTU</td><td>~132 W</td><td>4,500 BTU / 1,320 W</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">FAQs</div>
+      <h2 class="section-title">Radiator BTU Calculator — Frequently Asked Questions</h2>
+      <p class="section-sub">Direct answers to the most common radiator sizing questions.</p>
+    </div>
+    <div class="faq-list" style="margin-top:24px;max-width:760px;margin-left:auto;margin-right:auto">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I calculate BTU from radiator size?<span class="arrow">⌄</span></button>
+        <div class="faq-a"><p>For panel radiators, measure height and width in mm and reference the manufacturer's output table at ΔT50. A <strong>600×1000 mm Type 22</strong> panel radiator produces approximately <strong>5,800 BTU/hr (1,703 W)</strong> at ΔT50. Use our calculator above for instant results from any dimensions.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is ΔT50 in radiator BTU ratings?<span class="arrow">⌄</span></button>
+        <div class="faq-a"><p>ΔT50 (Delta T 50) means the mean water temperature in the radiator is <strong>50°C above room temperature</strong> — typically a flow/return of 75°C/65°C with a room at 20°C. This is the standard EN 442 test condition for all UK and European radiator BTU ratings.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need to oversize radiators for a heat pump?<span class="arrow">⌄</span></button>
+        <div class="faq-a"><p>Yes. Heat pumps run at lower flow temperatures (ΔT30–ΔT35), which reduces radiator output significantly. A radiator rated <strong>6,000 BTU at ΔT50</strong> only delivers around <strong>3,108 BTU at ΔT30</strong> (×0.518 factor). Plan to use approximately <strong>2× the radiator size</strong> compared to a gas boiler system.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How many BTU does a cast iron radiator produce per section?<span class="arrow">⌄</span></button>
+        <div class="faq-a"><p>A standard 4-column 760 mm cast iron radiator produces approximately <strong>665 BTU (195 W) per section</strong> at ΔT50. Multiply by your total section count. Cast iron has higher thermal mass than steel — it heats more slowly but retains heat longer after the boiler cycles off.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is the difference between BTU and watts for radiators?<span class="arrow">⌄</span></button>
+        <div class="faq-a"><p>Both measure heat output. <strong>1 watt = 3.412 BTU/hr</strong>. UK manufacturers publish in watts; US manufacturers in BTU/hr. To convert: BTU/hr ÷ 3.412 = Watts, or Watts × 3.412 = BTU/hr.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How many BTU per m² do I need?<span class="arrow">⌄</span></button>
+        <div class="faq-a"><p>The UK standard is <strong>60 W (205 BTU) per m²</strong> for average insulation at ΔT50. For poorly insulated older homes use 80–100 W/m². New builds with excellent insulation typically need 40–55 W/m². Always add 10–15% extra for bathrooms.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What Type 22 radiator do I need for a 15 m² room?<span class="arrow">⌄</span></button>
+        <div class="faq-a"><p>For a 15 m² room with average insulation at ΔT50, you need approximately <strong>900 W (3,070 BTU)</strong>. A <strong>600×600 mm Type 22</strong> (1,022 W) covers this comfortably. Use the room calculator above for a precise result based on your ceiling height and insulation type.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED CALCULATORS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">Related Tools</div>
+      <h2 class="section-title">More BTU Calculators</h2>
+    </div>
+    <div class="related-grid" style="margin-top:24px">
+      <a class="related-card" href="/heating-btu-calculator"><span class="rc-icon">🔥</span><div class="rc-title">Heating BTU Calculator</div><div class="rc-desc">Size your gas furnace, electric heater, or boiler for any home.</div></a>
+      <a class="related-card" href="/btu-conversion-calculator"><span class="rc-icon">⚡</span><div class="rc-title">BTU Conversion Calculator</div><div class="rc-desc">Convert BTU to watts, kW, tons, joules, CFM, therms instantly.</div></a>
+      <a class="related-card" href="/mini-split-btu-calculator"><span class="rc-icon">💨</span><div class="rc-title">Mini Split BTU Calculator</div><div class="rc-desc">Single and multi-zone mini split sizing for all major brands.</div></a>
+      <a class="related-card" href="/btu-energy-cost-calculator"><span class="rc-icon">💰</span><div class="rc-title">BTU Energy Cost Calculator</div><div class="rc-desc">Compare cost per BTU for gas vs. electric heating systems.</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon">📐</div>
+      <div><h4>EN 442 &amp; CIBSE Standards</h4><p>Radiator output formulas based on EN 442 European test standard and CIBSE heat loss methodology used by UK heating engineers.</p></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔒</div>
+      <div><h4>Instant, Private Results</h4><p>All calculations run in your browser. No account, no data stored, works offline on any device.</p></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📱</div>
+      <div><h4>Mobile-Optimised</h4><p>Use it at the radiator showroom or at home. Fully responsive on all screen sizes.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- REFERENCES -->
+<div class="refs-bar">
+  <div class="refs-inner">
+    <div class="refs-title">Authoritative HVAC References</div>
+    <div class="refs-grid">
+      <div class="ref-card"><div class="ref-source">BEAMA / BSRIA</div><div class="ref-name">EN 442 Radiator Standards</div><div class="ref-desc">European standard test conditions for radiator heat output at ΔT50.</div><a href="https://www.beama.org.uk" target="_blank" rel="noopener">↗ beama.org.uk</a></div>
+      <div class="ref-card"><div class="ref-source">CIBSE</div><div class="ref-name">Heat Loss Calculations</div><div class="ref-desc">CIBSE Guide A: Environmental Design — the standard for UK heat loss calculations.</div><a href="https://www.cibse.org" target="_blank" rel="noopener">↗ cibse.org</a></div>
+      <div class="ref-card"><div class="ref-source">Energy Saving Trust</div><div class="ref-name">Heat Pump Guidance</div><div class="ref-desc">Guidance on sizing radiators for low-temperature heat pump systems.</div><a href="https://energysavingtrust.org.uk" target="_blank" rel="noopener">↗ energysavingtrust.org.uk</a></div>
+      <div class="ref-card"><div class="ref-source">ASHRAE</div><div class="ref-name">ASHRAE Standards</div><div class="ref-desc">Technical HVAC engineering standards used worldwide for load calculations.</div><a href="https://www.ashrae.org" target="_blank" rel="noopener">↗ ashrae.org</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><div class="footer-logo-icon">⚡</div>BTUCalc</div>
+        <p>Free, accurate BTU calculators for every heating and cooling need. Based on ACCA Manual J. Updated 2026.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <ul>
+          <li><a href="/ac-btu-calculator">AC BTU Calculator</a></li>
+          <li><a href="/heating-btu-calculator">Heating BTU Calculator</a></li>
+          <li><a href="/mini-split-btu-calculator">Mini Split BTU</a></li>
+          <li><a href="/radiator-btu-calculator">Radiator BTU</a></li>
+          <li><a href="/special-spaces-btu">Special Spaces BTU</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Heating</h4>
+        <ul>
+          <li><a href="/heating-btu-calculator">Heating BTU Calculator</a></li>
+          <li><a href="/radiator-btu-calculator">Radiator BTU Calculator</a></li>
+          <li><a href="/btu-energy-cost-calculator">Heating Cost Calculator</a></li>
+          <li><a href="/how-to-calculate-btu">BTU Charts &amp; Tables</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Tools &amp; Guide</h4>
+        <ul>
+          <li><a href="/btu-conversion-calculator">BTU Conversion</a></li>
+          <li><a href="/how-to-calculate-btu">How to Calculate BTU</a></li>
+          <li><a href="/btu-conversion-calculator">BTU to Watts</a></li>
+          <li><a href="/btu-conversion-calculator">BTU to kW</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BTUCalc.vercel.app — Free BTU calculators for heating, cooling &amp; radiator sizing.</span>
+      <span>Based on EN 442, CIBSE, and ACCA Manual J standards.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── TAB SWITCHING ──
+function switchTab(tab, btn) {
+  document.querySelectorAll('.calc-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-output').style.display = tab === 'output' ? 'block' : 'none';
+  document.getElementById('tab-needed').style.display = tab === 'needed' ? 'block' : 'none';
+}
+
+// ── RADIATOR TYPE TOGGLES ──
+function toggleTypeInputs() {
+  const val = document.getElementById('p-type').value;
+  document.getElementById('p-dims-row').style.display    = (val === 'castiron' || val === 'electric') ? 'none' : 'grid';
+  document.getElementById('p-section-row').style.display = val === 'castiron' ? 'grid' : 'none';
+  document.getElementById('p-watt-row').style.display    = val === 'electric'  ? 'grid' : 'none';
+}
+
+// ── COEFFICIENTS (W per 100mm height per 100mm width at ΔT50) ──
+const COEFF = { type22: 2.838, type21: 1.890, type11: 1.181, column3: 1.600, column4: 2.100 };
+
+// ── PANEL OUTPUT CALC ──
+function calcPanelOutput() {
+  const type = document.getElementById('p-type').value;
+  const dt   = parseFloat(document.getElementById('p-dt').value);
+  let watts, btu, kw, note;
+
+  if (type === 'electric') {
+    watts = parseFloat(document.getElementById('p-elec-watts').value);
+    btu   = Math.round(watts * 3.412);
+    kw    = (watts / 1000).toFixed(2);
+    note  = 'Electric output is fixed at rated wattage regardless of ΔT.';
+  } else if (type === 'castiron') {
+    const sections = parseInt(document.getElementById('p-sections').value);
+    const baseW    = sections * 195;
+    watts = Math.round(baseW * dt);
+    btu   = Math.round(watts * 3.412);
+    kw    = (watts / 1000).toFixed(2);
+    note  = `${sections} sections × ~195 W/section at ΔT50, adjusted for selected ΔT.`;
+  } else {
+    const h = parseFloat(document.getElementById('p-height').value);
+    const w = parseFloat(document.getElementById('p-width').value);
+    const baseW = COEFF[type] * (h / 100) * (w / 100) * 100;
+    watts = Math.round(baseW * dt);
+    btu   = Math.round(watts * 3.412);
+    kw    = (watts / 1000).toFixed(2);
+    const cover = Math.round(watts / 60);
+    note  = `Covers approx. ${cover} m² at 60 W/m² (average insulation) at selected ΔT.`;
+  }
+
+  document.getElementById('p-r-btu').textContent = btu.toLocaleString() + ' BTU/hr';
+  document.getElementById('p-r-w').textContent   = watts.toLocaleString() + ' W';
+  document.getElementById('p-r-kw').textContent  = kw + ' kW';
+  document.getElementById('p-r-note').textContent = note;
+  const box = document.getElementById('p-result');
+  box.classList.add('show');
+}
+
+// ── ROOM NEEDED CALC ──
+function calcRoomNeeded() {
+  const l      = parseFloat(document.getElementById('r-length').value);
+  const w      = parseFloat(document.getElementById('r-width-input').value);
+  const h      = parseFloat(document.getElementById('r-ceiling').value);
+  const insul  = parseInt(document.getElementById('r-insul').value);
+  const rtype  = parseFloat(document.getElementById('r-roomtype').value);
+  const dt     = parseFloat(document.getElementById('r-dt').value);
+
+  const vol       = l * w * h;
+  const baseWatts = Math.round(vol * (insul / 2.4) * rtype);
+  const radWatts  = Math.round(baseWatts / dt);
+  const btu       = Math.round(radWatts * 3.412);
+  const widthMM   = Math.min(Math.round((radWatts / (COEFF.type22 * 6)) * 10 / 10) * 10, 2000);
+  const sizeStr   = widthMM < 2000 ? `600 × ${widthMM} mm` : '2× radiators needed';
+
+  document.getElementById('r-r-btu').textContent  = btu.toLocaleString() + ' BTU';
+  document.getElementById('r-r-w').textContent    = radWatts.toLocaleString() + ' W';
+  document.getElementById('r-r-size').textContent = sizeStr;
+  document.getElementById('r-r-note').textContent =
+    `Type 22 panel at selected ΔT. Room: ${(l*w).toFixed(0)} m² × ${h}m ceiling = ${vol.toFixed(1)} m³.`;
+  document.getElementById('r-result').classList.add('show');
+}
+
+// ── HERO OUTPUT ──
+function calcHeroOutput() {
+  const type  = document.getElementById('q-type').value;
+  const dt    = parseFloat(document.getElementById('q-dt').value);
+  const h     = parseFloat(document.getElementById('q-height').value);
+  const w     = parseFloat(document.getElementById('q-width').value);
+  const c     = type === 'panel22' ? 2.838 : type === 'panel21' ? 1.890 : type === 'panel11' ? 1.181 : type === 'column' ? 1.800 : 2.100;
+  const watts = Math.round(c * (h/100) * (w/100) * 100 * dt);
+  const btu   = Math.round(watts * 3.412);
+
+  document.getElementById('h-btu').innerHTML    = btu.toLocaleString() + ' <span>BTU/hr output</span>';
+  document.getElementById('h-watts').textContent = watts.toLocaleString() + ' W';
+  document.getElementById('h-kw').textContent    = (watts/1000).toFixed(2) + ' kW';
+  document.getElementById('h-cover').textContent = '~' + Math.round(watts/60) + ' m²';
+  document.getElementById('hero-result-output').classList.add('show');
+}
+
+// ── HERO NEEDED ──
+function calcHeroNeeded() {
+  const sqm   = parseFloat(document.getElementById('n-sqm').value);
+  const ceil  = parseFloat(document.getElementById('n-ceiling').value);
+  const insul = parseInt(document.getElementById('n-insul').value);
+  const dt    = parseFloat(document.getElementById('n-dt').value);
+  const vol   = sqm * ceil;
+  const baseW = Math.round(vol * (insul / 2.4));
+  const radW  = Math.round(baseW / dt);
+  const btu   = Math.round(radW * 3.412);
+  const wmm   = Math.min(Math.round((radW / (COEFF.type22 * 6)) * 10 / 10) * 10, 2000);
+
+  document.getElementById('hn-btu').innerHTML     = btu.toLocaleString() + ' <span>BTU needed</span>';
+  document.getElementById('hn-watts').textContent  = radW.toLocaleString() + ' W';
+  document.getElementById('hn-size').textContent   = `600 × ${wmm} mm`;
+  document.getElementById('hero-result-needed').classList.add('show');
+}
+
+// ── FAQ ACCORDION ──
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+  if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+}
+</script>
+</body>
+</html>
