@@ -1,11 +1,1169 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Mini Split BTU Calculator | BTU Calc</title><meta name="description" content="Size a mini split system for single-zone or multi-zone rooms using climate, insulation, room use, and total BTU demand with practical outputs."><meta name="robots" content="index, follow"><link rel="canonical" href="https://btucalc.vercel.app/mini-split-btu-calculator"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300..700&display=swap" rel="stylesheet"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/style.css"><script defer src="/calculator.js"></script><meta property="og:title" content="Mini Split BTU Calculator | BTU Calc">
-<meta property="og:description" content="Size a mini split system for single-zone or multi-zone rooms using climate, insulation, room use, and total BTU demand with practical outputs.">
-<meta property="og:url" content="https://btucalc.vercel.app/mini-split-btu-calculator">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://btucalc.vercel.app/og-image.png">
-<meta property="og:site_name" content="BTUCalc">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mini Split BTU Calculator | BTU Calc">
-<meta name="twitter:description" content="Size a mini split system for single-zone or multi-zone rooms using climate, insulation, room use, and total BTU demand with practical outputs.">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"BTUCalc","url":"https://btucalc.vercel.app/"},{"@type":"SoftwareApplication","name":"Mini Split BTU Calculator","applicationCategory":"UtilityApplication","operatingSystem":"Web","url":"https://btucalc.vercel.app/mini-split-btu-calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What size mini split do I need?","acceptedAnswer":{"@type":"Answer","text":"The right mini split size depends on room area, room type, climate zone, insulation, ceiling height, and whether you are sizing one room or multiple zones together."}},{"@type":"Question","name":"Is 12000 BTU enough for a mini split?","acceptedAnswer":{"@type":"Answer","text":"A 12000 BTU mini split commonly fits a medium room or open bedroom suite, but kitchens, garages, server spaces, and hot climates can require more capacity."}},{"@type":"Question","name":"Can one mini split handle multiple rooms?","acceptedAnswer":{"@type":"Answer","text":"Yes, but a multi-zone system works best when each room load is estimated separately and connected to a properly sized outdoor unit."}},{"@type":"Question","name":"Do mini splits need extra BTU for garages or kitchens?","acceptedAnswer":{"@type":"Answer","text":"Yes. Garages, kitchens, and server-heavy rooms often need extra BTU because they carry higher internal or shell heat loads than a standard bedroom."}},{"@type":"Question","name":"Should I size the outdoor unit above the indoor total?","acceptedAnswer":{"@type":"Answer","text":"Usually a small allowance is reasonable because manufacturers rate systems by nominal classes, but large oversizing is still best avoided."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://btucalc.vercel.app/"},{"@type":"ListItem","position":2,"name":"Mini Split BTU Calculator","item":"https://btucalc.vercel.app/mini-split-btu-calculator"}]}]}</script>
-</head><body><a href="#calculator" class="skip-link">Skip to calculator</a><header class="site-header"><div class="container"><a href="/index.html" class="logo"><svg viewBox="0 0 40 40"><path d="M20 5a5 5 0 0 0-5 5v13.4a8 8 0 1 0 10 0V10a5 5 0 0 0-5-5Z"></path><path d="M20 11v15"></path></svg><span>BTU<strong>Calc</strong></span></a><nav class="main-nav"><a href="/ac-btu-calculator.html">AC</a><a href="/heating-btu-calculator.html">Heating</a><a href="/mini-split-btu-calculator.html">Mini Split</a><a href="/radiator-btu-calculator.html">Radiator</a><a href="/btu-conversion-calculator.html">Convert</a><a href="/special-spaces-btu-calculator.html">Spaces</a></nav><div class="header-actions"><button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode">🌙</button><button class="hamburger" aria-label="Open menu" aria-expanded="false">☰</button></div></div><div class="mobile-panel"><div class="mobile-panel-inner"><a href="/ac-btu-calculator.html">AC BTU calculator by room size</a><a href="/heating-btu-calculator.html">Heating BTU calculator for furnaces</a><a href="/mini-split-btu-calculator.html">Mini split BTU sizing guide</a><a href="/radiator-btu-calculator.html">Radiator BTU output calculator</a><a href="/btu-conversion-calculator.html">BTU conversion calculator</a><a href="/special-spaces-btu-calculator.html">Special spaces BTU calculator</a><a href="/fireplace-pool-btu-calculator.html">Fireplace and pool heater sizing</a><a href="/btu-energy-cost-calculator.html">BTU energy cost calculator</a><a href="/how-to-calculate-btu.html">How to calculate BTU guide</a></div></div></header><main><section class="page-hero"><div class="container"><div class="breadcrumbs"><a href="/index.html">Home</a><span>›</span><span>Mini Split BTU Calculator</span></div><div class="pill">Ductless heat pump sizing</div><h1>Mini Split BTU Calculator — Single &amp; Multi-Zone Heat Pump Sizing</h1><p class="lede">Estimate per-zone and total mini split load for bedrooms, living rooms, kitchens, garages, and specialty rooms.</p></div></section><section class="calculator-section section" id="calculator"><div class="container"><div class="calc-layout"><form class="calc-inputs" id="mini-form"><div class="input-group"><label>Calculation mode</label><div class="mode-toggle"><button type="button" class="seg-btn active" data-mini-mode="single">Single Zone</button><button type="button" class="seg-btn" data-mini-mode="multi">Multi-Zone</button></div></div><div id="mini-zones"></div><button type="button" id="add-zone-btn" class="add-zone-btn hidden">+ Add Zone</button><div class="input-group"><label for="mini-climate">Climate zone</label><select id="mini-climate"><option value="1">Zone 1</option><option value="2">Zone 2</option><option value="3">Zone 3</option><option value="4">Zone 4</option><option value="5">Zone 5</option><option value="6">Zone 6</option><option value="7">Zone 7</option></select></div><div class="input-group"><label for="mini-insulation">Insulation level</label><select id="mini-insulation"><option value="poor">Poor</option><option value="average">Average</option><option value="good">Good</option><option value="excellent">Excellent</option></select></div><div class="input-group"><label for="mini-type">Mini split type</label><select id="mini-type"><option value="Single zone wall mount">Single zone wall mount</option><option value="Multi-zone">Multi-zone</option><option value="Ceiling cassette">Ceiling cassette</option><option value="Ducted mini split">Ducted mini split</option></select></div><p class="error-text form-error" role="alert" hidden></p><button class="btn-calculate" type="submit">Calculate BTU →</button></form><div class="calc-results" aria-live="polite"><div id="mini-result-placeholder" class="result-placeholder"><div class="result-prompt">Add one or more zones to size your ductless system.</div></div><div id="mini-result-output" class="result-card" hidden><div class="result-primary"><span class="result-label">Total system BTU</span><span class="result-value" id="mini-btu-output">—</span></div><div class="result-secondary"><div class="result-item"><span>Total tonnage:</span><strong id="mini-tonnage-output">—</strong></div><div class="result-item"><span>System recommendation:</span><strong id="mini-unit-type">—</strong></div><div class="result-item"><span>Outdoor unit size:</span><strong id="mini-outdoor-output">—</strong></div><div class="result-item"><span>Brand sizing chart:</span><strong id="mini-brand-output">—</strong></div><div class="result-item"><span>Per-zone BTU:</span><strong id="mini-zones-output">—</strong></div></div><div class="result-actions"><button type="button" class="btn-copy" data-copy-target="mini-result-output">📋 Copy Result</button><button type="button" class="btn-reset" data-reset-form="mini-form" data-reset-result="mini-result-output" data-reset-placeholder="mini-result-placeholder">↺ Reset</button></div></div></div></div></div></section><section class="section"><div class="container content-flow"><h2>How We Calculate Mini Split BTU</h2><p>The mini split calculator starts with a zone-by-zone load rather than a whole-home average. That matters because bedrooms, garages, kitchens, and server rooms generate very different heat loads. We scale each zone for room area, ceiling height, usage type, climate severity, and insulation level. Then we aggregate the individual zone results to estimate outdoor unit size, single-zone versus multi-zone suitability, and a nominal brand match range for Mitsubishi, Daikin, Mr. Cool, LG, and Fujitsu class sizes.</p><p>For heating-capable mini splits, colder climates need more capacity margin because low outdoor temperatures reduce heat pump output. If your result is close to the next size up, favor the larger cold-climate rated model rather than a standard unit.</p><h2>Mini Split BTU Chart</h2><div class="table-wrap"><table><thead><tr><th>Room type</th><th>Typical size</th><th>Typical BTU</th><th>Common head size</th></tr></thead><tbody><tr><td>Bedroom</td><td>150–250 sq ft</td><td>6,000–9,000</td><td>6k or 9k</td></tr><tr><td>Office</td><td>200–300 sq ft</td><td>9,000</td><td>9k</td></tr><tr><td>Living room</td><td>300–500 sq ft</td><td>12,000–18,000</td><td>12k or 18k</td></tr><tr><td>Kitchen</td><td>250–400 sq ft</td><td>12,000–18,000</td><td>12k or 18k</td></tr><tr><td>Garage</td><td>400–600 sq ft</td><td>12,000–18,000</td><td>18k</td></tr><tr><td>Studio apartment</td><td>600–800 sq ft</td><td>18,000</td><td>18k</td></tr><tr><td>Open floor plan</td><td>800–1,200 sq ft</td><td>24,000–30,000</td><td>24k or multi-zone</td></tr><tr><td>Multi-zone home area</td><td>1,200+ sq ft</td><td>30,000+</td><td>Multi-zone condenser</td></tr></tbody></table></div><h2>Frequently Asked Questions</h2><div class="faq-list"><details><summary>How to calculate BTU needed for mini split?</summary><p>Calculate each zone separately using area, ceiling height, usage, climate, and insulation. Then add the zone loads together to choose a properly sized outdoor unit and indoor heads.</p></details><details><summary>What size mini split do I need for a 500 sq ft room?</summary><p>Many 500 square foot rooms land around 12,000 BTU, but sunny living rooms and garages often need more, while shaded bedrooms may need less.</p></details><details><summary>How many BTU mini split for a garage?</summary><p>Garages often need 12,000 to 18,000 BTU depending on insulation, climate, ceiling height, and whether the space is used as a workshop or gym.</p></details><details><summary>How to calculate BTU for a multi-zone mini split?</summary><p>Size each room on its own first, then total the results. Keep in mind that outdoor unit selection also depends on simultaneous loads and manufacturer connection limits.</p></details></div><h2>Related Calculators</h2><div class="related-grid"><a href="/ac-btu-calculator.html" class="related-card"><strong>AC BTU calculator by room size</strong><p>Compare ductless results to standard room cooling estimates.</p></a><a href="/special-spaces-btu-calculator.html" class="related-card"><strong>Garage and server room BTU calculator</strong><p>Handle specialty rooms that need more than a basic room formula.</p></a><a href="/how-to-calculate-btu.html" class="related-card"><strong>How to calculate BTU for mini split systems</strong><p>Read the underlying formulas and conversion rules.</p></a></div></div></section></main><footer class="footer"><div class="container footer-grid"><div><a href="/index.html" class="logo"><svg viewBox="0 0 40 40"><path d="M20 5a5 5 0 0 0-5 5v13.4a8 8 0 1 0 10 0V10a5 5 0 0 0-5-5Z"></path><path d="M20 11v15"></path></svg><span>BTU<strong>Calc</strong></span></a><p class="lede" style="font-size:1rem;margin-top:1rem">Free, accurate BTU calculators for every heating & cooling need.</p></div><div class="footer-columns"><div><h4>Cooling</h4><ul><li><a href="/ac-btu-calculator.html">AC BTU Calculator</a></li><li><a href="/mini-split-btu-calculator.html">Mini Split BTU Calculator</a></li><li><a href="/special-spaces-btu-calculator.html">Portable AC and special spaces sizing</a></li></ul></div><div><h4>Heating</h4><ul><li><a href="/heating-btu-calculator.html">Furnace BTU calculator</a></li><li><a href="/radiator-btu-calculator.html">Radiator heat output calculator</a></li><li><a href="/fireplace-pool-btu-calculator.html">Fireplace and boiler calculator</a></li></ul></div><div><h4>Tools & Learn</h4><ul><li><a href="/btu-conversion-calculator.html">BTU to watts and tons conversion</a></li><li><a href="/btu-energy-cost-calculator.html">BTU energy cost estimator</a></li><li><a href="/how-to-calculate-btu.html">How to calculate BTU</a></li></ul></div></div></div><div class="container footer-bottom"><span>© 2026 BTUCalc. All rights reserved.</span><span><a href="/privacy-policy.html">Privacy Policy</a> · <a href="/terms-of-use.html">Terms of Use</a></span></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Split BTU Calculator — Ductless Heat Pump Sizing (2026)</title>
+  <meta name="description" content="Free mini split BTU calculator for single-zone and multi-zone ductless systems. Works for Mitsubishi, Daikin, Mr. Cool, LG & all brands. Instant ACCA Manual J sizing.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://btucalc.vercel.app/mini-split-btu-calculator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://btucalc.vercel.app/mini-split-btu-calculator.html">
+  <meta property="og:title" content="Mini Split BTU Calculator — Ductless Heat Pump Sizing (2026)">
+  <meta property="og:description" content="Free mini split BTU calculator for single-zone and multi-zone ductless systems. Instant sizing for Mitsubishi, Daikin, Mr. Cool, LG & Fujitsu.">
+  <meta property="og:site_name" content="BTUCalc">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mini Split BTU Calculator — Ductless Heat Pump Sizing (2026)">
+  <meta name="twitter:description" content="Size your mini split ductless system instantly. Single-zone & multi-zone. Works for all major brands.">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23cc3300'/><rect x='14' y='5' width='4' height='13' rx='2' fill='white'/><circle cx='16' cy='22' r='4.5' fill='white'/><circle cx='16' cy='22' r='2.5' fill='%23cc3300' opacity='.4'/></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&display=swap" rel="stylesheet">
+
+  <!-- Google Auto Ads — replace with your publisher ID -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebPage",
+        "@id":"https://btucalc.vercel.app/mini-split-btu-calculator.html#webpage",
+        "url":"https://btucalc.vercel.app/mini-split-btu-calculator.html",
+        "name":"Mini Split BTU Calculator — Ductless Heat Pump Sizing (2026)",
+        "description":"Free mini split BTU calculator for single-zone and multi-zone ductless systems. Works for all major brands.",
+        "isPartOf":{"@id":"https://btucalc.vercel.app/#website"},
+        "breadcrumb":{
+          "@type":"BreadcrumbList",
+          "itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://btucalc.vercel.app/"},
+            {"@type":"ListItem","position":2,"name":"Mini Split BTU Calculator","item":"https://btucalc.vercel.app/mini-split-btu-calculator.html"}
+          ]
+        }
+      },
+      {
+        "@type":"SoftwareApplication",
+        "name":"Mini Split BTU Calculator",
+        "applicationCategory":"UtilityApplication",
+        "operatingSystem":"Web Browser",
+        "url":"https://btucalc.vercel.app/mini-split-btu-calculator.html",
+        "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+      },
+      {
+        "@type":"HowTo",
+        "name":"How to Calculate BTU for a Mini Split",
+        "description":"Step-by-step guide to sizing a ductless mini split heat pump.",
+        "step":[
+          {"@type":"HowToStep","position":1,"name":"Measure room square footage","text":"Measure the total conditioned square footage of the room or zone."},
+          {"@type":"HowToStep","position":2,"name":"Select climate zone","text":"Identify your IECC climate zone or city design temperature."},
+          {"@type":"HowToStep","position":3,"name":"Apply base BTU factor","text":"Multiply sq ft by 20 BTU/sq ft (cooling) or 30–50 BTU/sq ft (heating) depending on climate."},
+          {"@type":"HowToStep","position":4,"name":"Adjust for insulation and windows","text":"Apply insulation multiplier and add BTU for extra windows or sun exposure."},
+          {"@type":"HowToStep","position":5,"name":"Check HSPF for heating","text":"For heat pump heating, verify the system's HSPF rating is adequate for your climate zone minimum temperatures."},
+          {"@type":"HowToStep","position":6,"name":"Select the standard tonnage","text":"Round up to the nearest standard mini split size: 9K, 12K, 18K, 24K, 30K, or 36K BTU."}
+        ]
+      },
+      {
+        "@type":"FAQPage",
+        "mainEntity":[
+          {"@type":"Question","name":"How many BTU mini split do I need?","acceptedAnswer":{"@type":"Answer","text":"A general rule is 20 BTU per sq ft for cooling. For a 500 sq ft room: 12,000 BTU (1 ton). For a 1,000 sq ft space: 18,000–24,000 BTU. In cold climates, size up 20–30% for heating capacity. Always use climate zone and insulation adjustments for an accurate result."}},
+          {"@type":"Question","name":"What size mini split do I need for 1,000 sq ft?","acceptedAnswer":{"@type":"Answer","text":"A 1,000 sq ft space typically needs an 18,000 BTU (1.5-ton) mini split in moderate climates. In hot climates (Zone 1–2) you may need 24,000 BTU. In very cold climates (Zone 6–7) size up to 24,000 BTU for adequate heating capacity."}},
+          {"@type":"Question","name":"What is the difference between single-zone and multi-zone mini splits?","acceptedAnswer":{"@type":"Answer","text":"A single-zone mini split has one outdoor unit connected to one indoor air handler, serving one room or area. A multi-zone system connects one outdoor unit to 2–5 indoor heads, each serving a separate zone independently. Multi-zone systems are more efficient for whole-home conditioning than running multiple single-zone systems."}},
+          {"@type":"Question","name":"Can a mini split be too big for a room?","acceptedAnswer":{"@type":"Answer","text":"Yes. An oversized mini split short-cycles — it cools or heats the room too quickly before completing a full dehumidification cycle, leading to humidity problems, uneven temperatures, and excess wear on the compressor. Always size within 10–15% of the calculated BTU requirement."}},
+          {"@type":"Question","name":"What SEER rating should I look for in a mini split?","acceptedAnswer":{"@type":"Answer","text":"For most US climates, look for a SEER2 rating of 18 or higher. In hot climates (Zone 1–3) where AC runs heavily, a SEER2 of 20+ pays back faster. In cold climates, prioritize HSPF2 (heating efficiency) of 10+ for maximum heating savings."}},
+          {"@type":"Question","name":"How do I size a multi-zone mini split system?","acceptedAnswer":{"@type":"Answer","text":"Calculate the BTU for each zone independently using room size, exposure, and insulation. Sum all zone BTUs to get the required outdoor unit capacity. The outdoor unit should be sized at 100–125% of the total zone BTU sum. Most systems allow zones to run simultaneously at partial capacity."}}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --red:#cc3300;--red-dark:#a82800;--red-light:#fff0ec;
+      --blue:#0057b8;--blue-light:#e8f0fb;
+      --green:#1a7a3c;--green-light:#e6f5ec;
+      --amber:#b45309;--amber-light:#fef3c7;
+      --text:#1a1a1a;--text-2:#444;--text-3:#6b7280;
+      --border:#e5e7eb;--border-2:#d1d5db;
+      --bg:#fff;--bg-2:#f8f9fa;--bg-3:#f1f3f5;
+      --radius:12px;--radius-sm:8px;--radius-xs:6px;
+      --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+      --shadow-md:0 4px 16px rgba(0,0,0,.10);
+      --shadow-lg:0 8px 32px rgba(0,0,0,.13);
+      --font:'DM Sans',system-ui,sans-serif;
+      --font-serif:'DM Serif Display',Georgia,serif;
+      --max:780px;
+    }
+    html{font-size:16px;-webkit-text-size-adjust:100%}
+    body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.6;min-height:100vh}
+
+    /* ===== HEADER / NAV ===== */
+    .site-header{background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(8px)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px}
+    .nav-logo{font-family:var(--font-serif);font-size:1.25rem;color:var(--red);text-decoration:none;font-weight:400;letter-spacing:-.01em}
+    .nav-logo span{color:var(--text-3);font-family:var(--font);font-size:.75rem;font-weight:500;margin-left:4px;letter-spacing:.02em;text-transform:uppercase}
+    .nav-links{display:flex;gap:4px;align-items:center}
+    .nav-links a{font-size:.8rem;font-weight:500;color:var(--text-2);text-decoration:none;padding:5px 10px;border-radius:20px;transition:all .15s}
+    .nav-links a:hover,.nav-links a.active{background:var(--red-light);color:var(--red)}
+    .nav-links a.active{font-weight:600}
+
+    /* ===== BREADCRUMB ===== */
+    .breadcrumb{background:var(--bg-2);border-bottom:1px solid var(--border);padding:8px 20px}
+    .breadcrumb-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--text-3)}
+    .breadcrumb-inner a{color:var(--text-3);text-decoration:none}
+    .breadcrumb-inner a:hover{color:var(--red)}
+    .breadcrumb-inner span{color:var(--text-3)}
+
+    /* ===== PAGE LAYOUT ===== */
+    .page-wrap{max-width:var(--max);margin:0 auto;padding:32px 20px 64px}
+
+    /* ===== HERO ===== */
+    .hero{text-align:center;padding:36px 0 28px}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--red-light);color:var(--red);font-size:.75rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em}
+    .hero h1{font-family:var(--font-serif);font-size:clamp(1.75rem,4vw,2.6rem);font-weight:400;line-height:1.15;color:var(--text);margin-bottom:14px}
+    .hero h1 em{color:var(--red);font-style:normal}
+    .hero-sub{font-size:1.05rem;color:var(--text-2);max-width:540px;margin:0 auto 20px;line-height:1.55}
+    .hero-trust{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;font-size:.78rem;color:var(--text-3)}
+    .hero-trust span{display:flex;align-items:center;gap:4px}
+
+    /* ===== TAB SWITCHER ===== */
+    .tab-bar{display:flex;gap:6px;background:var(--bg-3);border-radius:var(--radius);padding:5px;margin-bottom:24px}
+    .tab-btn{flex:1;padding:9px 8px;border:none;background:transparent;border-radius:var(--radius-sm);font-family:var(--font);font-size:.85rem;font-weight:500;color:var(--text-2);cursor:pointer;transition:all .18s;text-align:center}
+    .tab-btn.active{background:var(--bg);color:var(--red);box-shadow:var(--shadow);font-weight:600}
+    .tab-btn:hover:not(.active){background:rgba(255,255,255,.6)}
+    .tab-content{display:none}
+    .tab-content.active{display:block}
+
+    /* ===== CARD ===== */
+    .calc-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+    .calc-card+.calc-card{margin-top:20px}
+    .card-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+    .card-title .icon{width:28px;height:28px;background:var(--red-light);color:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+
+    /* ===== ZONE BUILDER ===== */
+    .zone-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+    .zone-row{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+    .zone-label{grid-column:1/-1;font-size:.78rem;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+    .zone-row .remove-btn{background:none;border:1px solid var(--border-2);border-radius:6px;width:32px;height:36px;cursor:pointer;color:var(--text-3);font-size:1rem;transition:all .15s;display:flex;align-items:center;justify-content:center}
+    .zone-row .remove-btn:hover{background:var(--red-light);color:var(--red);border-color:var(--red)}
+    .add-zone-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px;border:2px dashed var(--border-2);border-radius:var(--radius-sm);background:none;cursor:pointer;font-family:var(--font);font-size:.85rem;font-weight:500;color:var(--text-3);transition:all .15s}
+    .add-zone-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-light)}
+
+    /* ===== FORM ELEMENTS ===== */
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .form-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+    .form-grid.cols-1{grid-template-columns:1fr}
+    .field{display:flex;flex-direction:column;gap:5px}
+    .field label{font-size:.78rem;font-weight:600;color:var(--text-2);letter-spacing:.01em}
+    .field label .opt{font-weight:400;color:var(--text-3);font-size:.73rem}
+    .field input,.field select{width:100%;padding:9px 12px;border:1px solid var(--border-2);border-radius:var(--radius-xs);font-family:var(--font);font-size:.9rem;color:var(--text);background:var(--bg);transition:border-color .15s,box-shadow .15s;appearance:none;-webkit-appearance:none}
+    .field input:focus,.field select:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(204,51,0,.12)}
+    .field .hint{font-size:.72rem;color:var(--text-3);line-height:1.4}
+
+    /* ===== CALC BUTTON ===== */
+    .calc-btn{width:100%;padding:14px 20px;background:var(--red);color:#fff;border:none;border-radius:var(--radius-sm);font-family:var(--font);font-size:1rem;font-weight:700;cursor:pointer;transition:all .18s;margin-top:18px;letter-spacing:.01em;display:flex;align-items:center;justify-content:center;gap:8px}
+    .calc-btn:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(204,51,0,.3)}
+    .calc-btn:active{transform:translateY(0)}
+
+    /* ===== RESULT PANEL ===== */
+    .res-panel{display:none;background:var(--bg);border:2px solid var(--red);border-radius:var(--radius);padding:24px;margin-top:20px;box-shadow:var(--shadow-md)}
+    .res-panel.show{display:block}
+    .res-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+    .res-main-label{font-size:.78rem;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+    .res-main-number{font-family:var(--font-serif);font-size:2.8rem;color:var(--red);line-height:1;font-weight:400}
+    .res-main-number span{font-size:1.1rem;font-family:var(--font);font-weight:600;color:var(--text-3);margin-left:4px}
+    .res-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .res-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:.78rem;font-weight:600}
+    .res-badge.cool{background:var(--blue-light);color:var(--blue)}
+    .res-badge.heat{background:var(--red-light);color:var(--red)}
+    .res-badge.ton{background:var(--bg-3);color:var(--text-2)}
+    .res-badge.seer{background:var(--green-light);color:var(--green)}
+
+    /* Zone breakdown */
+    .zone-breakdown{background:var(--bg-2);border-radius:var(--radius-sm);padding:16px;margin-bottom:16px}
+    .zone-breakdown-title{font-size:.78rem;font-weight:700;color:var(--text-2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+    .zone-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+    .zone-item:last-child{border-bottom:none;font-weight:700;color:var(--text)}
+    .zone-item-name{color:var(--text-2)}
+    .zone-item-btu{font-weight:600;color:var(--red)}
+
+    /* Sizes grid */
+    .sizes-title{font-size:.78rem;font-weight:700;color:var(--text-2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+    .sizes-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+    .size-chip{padding:7px 14px;border-radius:20px;font-size:.82rem;font-weight:600;border:2px solid var(--border);color:var(--text-3);background:var(--bg-3);transition:all .15s}
+    .size-chip.match{background:var(--red);color:#fff;border-color:var(--red)}
+    .size-chip.close{background:var(--red-light);color:var(--red);border-color:var(--red)}
+
+    /* Brand recs */
+    .brand-recs{background:var(--bg-2);border-radius:var(--radius-sm);padding:16px;margin-bottom:16px}
+    .brand-recs-title{font-size:.78rem;font-weight:700;color:var(--text-2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+    .brand-row{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:.83rem}
+    .brand-row:last-child{border-bottom:none}
+    .brand-name{font-weight:600;color:var(--text)}
+    .brand-model{color:var(--text-3)}
+    .brand-seer{font-weight:700;color:var(--green);font-size:.78rem}
+
+    /* Disclaimer */
+    .res-note{font-size:.75rem;color:var(--text-3);line-height:1.5;padding:12px 14px;background:var(--bg-2);border-radius:var(--radius-xs);border-left:3px solid var(--border-2)}
+
+    /* ===== INFO SECTIONS ===== */
+    .section{margin-top:48px}
+    .section-title{font-family:var(--font-serif);font-size:1.5rem;color:var(--text);margin-bottom:6px;font-weight:400}
+    .section-sub{font-size:.9rem;color:var(--text-3);margin-bottom:20px}
+
+    /* Sizing table */
+    .data-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:8px}
+    .data-table th{background:var(--bg-3);padding:10px 12px;text-align:left;font-weight:600;font-size:.75rem;color:var(--text-2);text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid var(--border)}
+    .data-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text)}
+    .data-table tr:last-child td{border-bottom:none}
+    .data-table tr:hover td{background:var(--bg-2)}
+    .data-table .highlight{background:var(--red-light)}
+    .data-table .highlight td{font-weight:600}
+    .tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.72rem;font-weight:600}
+    .tag.cool{background:var(--blue-light);color:var(--blue)}
+    .tag.heat{background:var(--red-light);color:var(--red)}
+    .tag.both{background:var(--green-light);color:var(--green)}
+
+    /* Steps */
+    .steps{display:flex;flex-direction:column;gap:16px}
+    .step-item{display:flex;gap:14px;align-items:flex-start}
+    .step-num{min-width:32px;height:32px;background:var(--red);color:#fff;border-radius:50%;font-weight:700;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .step-body h3{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:4px}
+    .step-body p{font-size:.875rem;color:var(--text-2);line-height:1.55}
+    .step-body code{background:var(--bg-3);padding:2px 6px;border-radius:4px;font-size:.82rem;font-family:monospace}
+
+    /* Brand comparison table */
+    .brand-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+    /* FAQ */
+    .faq-list{display:flex;flex-direction:column;gap:4px}
+    .faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+    .faq-q{width:100%;text-align:left;background:var(--bg);border:none;padding:14px 16px;font-family:var(--font);font-size:.9rem;font-weight:600;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:background .15s}
+    .faq-q:hover{background:var(--bg-2)}
+    .faq-q .arr{font-size:.75rem;color:var(--text-3);transition:transform .2s;flex-shrink:0}
+    .faq-q[aria-expanded="true"] .arr{transform:rotate(180deg)}
+    .faq-q[aria-expanded="true"]{background:var(--red-light);color:var(--red)}
+    .faq-a{display:none;padding:14px 16px;font-size:.875rem;color:var(--text-2);line-height:1.65;background:var(--bg);border-top:1px solid var(--border)}
+    .faq-a.open{display:block}
+    .faq-a ul{padding-left:18px;margin-top:8px;display:flex;flex-direction:column;gap:4px}
+    .faq-a li{font-size:.85rem}
+
+    /* Info box */
+    .info-box{background:var(--blue-light);border:1px solid #b8d0ef;border-radius:var(--radius-sm);padding:16px 20px;margin:20px 0}
+    .info-box .info-title{font-weight:700;font-size:.875rem;color:var(--blue);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+    .info-box p,.info-box li{font-size:.85rem;color:var(--text-2);line-height:1.55}
+    .info-box ul{padding-left:18px;margin-top:6px;display:flex;flex-direction:column;gap:3px}
+    .warn-box{background:var(--amber-light);border:1px solid #fbbf24;border-radius:var(--radius-sm);padding:16px 20px;margin:20px 0}
+    .warn-box .warn-title{font-weight:700;font-size:.875rem;color:var(--amber);margin-bottom:6px}
+    .warn-box p,.warn-box li{font-size:.85rem;color:var(--text-2);line-height:1.55}
+    .warn-box ul{padding-left:18px;margin-top:6px;display:flex;flex-direction:column;gap:3px}
+
+    /* Related calc links */
+    .related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+    .related-card{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);text-decoration:none;color:var(--text);transition:all .15s;background:var(--bg)}
+    .related-card:hover{border-color:var(--red);background:var(--red-light);transform:translateY(-2px);box-shadow:var(--shadow)}
+    .related-card .rc-icon{font-size:1.3rem;margin-bottom:4px}
+    .related-card .rc-title{font-size:.875rem;font-weight:700;color:var(--text)}
+    .related-card:hover .rc-title{color:var(--red)}
+    .related-card .rc-desc{font-size:.75rem;color:var(--text-3)}
+
+    /* Footer */
+    .site-footer{background:var(--bg-2);border-top:1px solid var(--border);padding:32px 20px;margin-top:64px}
+    .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    .footer-logo{font-family:var(--font-serif);color:var(--red);font-size:1.1rem}
+    .footer-links{display:flex;flex-wrap:wrap;gap:16px}
+    .footer-links a{font-size:.8rem;color:var(--text-3);text-decoration:none}
+    .footer-links a:hover{color:var(--red)}
+    .footer-copy{font-size:.75rem;color:var(--text-3);width:100%}
+
+    /* Ad slots */
+    .ad-slot{width:100%;min-height:90px;background:var(--bg-2);border:1px dashed var(--border-2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--text-3);font-size:.75rem;margin:28px 0}
+
+    /* Responsive */
+    @media(max-width:600px){
+      .form-grid{grid-template-columns:1fr}
+      .form-grid.cols-3{grid-template-columns:1fr 1fr}
+      .nav-links a:not(.active){display:none}
+      .zone-row{grid-template-columns:1fr 1fr;gap:8px}
+      .zone-row .remove-btn{grid-column:2;justify-self:end}
+      .related-grid{grid-template-columns:1fr}
+      .res-top{flex-direction:column}
+    }
+
+    /* Dark mode */
+    @media(prefers-color-scheme:dark){
+      :root{
+        --text:#f0f0f0;--text-2:#c0c0c8;--text-3:#888898;
+        --border:#2a2a35;--border-2:#3a3a48;
+        --bg:#0f0f14;--bg-2:#17171f;--bg-3:#1e1e28;
+        --red-light:rgba(204,51,0,.15);
+        --blue-light:rgba(0,87,184,.15);
+        --green-light:rgba(26,122,60,.15);
+        --amber-light:rgba(180,83,9,.15);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">BTUCalc <span>Free HVAC Tool</span></a>
+    <nav class="nav-links">
+      <a href="/ac-btu-calculator.html">AC</a>
+      <a href="/heating-btu-calculator.html">Heating</a>
+      <a href="/mini-split-btu-calculator.html" class="active">Mini Split</a>
+      <a href="/radiator-btu-calculator.html">Radiator</a>
+      <a href="/btu-conversion-calculator.html">Convert</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== BREADCRUMB ===== -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="/">Home</a>
+    <span>›</span>
+    <span>Mini Split BTU Calculator</span>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<main class="page-wrap">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">💨 Updated 2026</div>
+    <h1>Mini Split <em>BTU Calculator</em></h1>
+    <p class="hero-sub">Size your ductless mini split for any room or whole home. Single-zone and multi-zone support. Works for Mitsubishi, Daikin, Mr. Cool, LG, Fujitsu & all major brands.</p>
+    <div class="hero-trust">
+      <span>✓ ACCA Manual J methodology</span>
+      <span>✓ Climate-zone adjusted</span>
+      <span>✓ Heating + cooling BTU</span>
+      <span>✓ Free, no login</span>
+    </div>
+  </div>
+
+  <!-- Ad slot top -->
+  <div class="ad-slot">
+    <ins class="adsbygoogle" style="display:block;width:100%;height:90px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="horizontal"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
+
+  <!-- ===== CALCULATOR CARD ===== -->
+  <div class="calc-card">
+
+    <!-- Tab bar -->
+    <div class="tab-bar" role="tablist">
+      <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab('single',this)">Single-Zone</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('multi',this)">Multi-Zone</button>
+    </div>
+
+    <!-- ===== SINGLE-ZONE TAB ===== -->
+    <div class="tab-content active" id="tab-single">
+      <div class="card-title"><div class="icon">🏠</div>Single-Zone Mini Split Sizing</div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="sz_sqft">Room Square Footage <span class="opt">(sq ft)</span></label>
+          <input type="number" id="sz_sqft" placeholder="e.g. 600" min="50" max="5000" inputmode="numeric">
+          <div class="hint">Measure length × width of the conditioned area</div>
+        </div>
+        <div class="field">
+          <label for="sz_clim">Climate Zone</label>
+          <select id="sz_clim">
+            <option value="1">Zone 1 — Hot/Humid (Miami, Houston)</option>
+            <option value="2">Zone 2 — Hot (Dallas, Phoenix, LA)</option>
+            <option value="3" selected>Zone 3 — Mixed-Hot (Atlanta, DC, Denver)</option>
+            <option value="4">Zone 4 — Mixed (NYC, Chicago, Seattle)</option>
+            <option value="5">Zone 5 — Cold (Minneapolis, Boston)</option>
+            <option value="6">Zone 6 — Very Cold (Fargo, Detroit)</option>
+            <option value="7">Zone 7 — Subarctic (Fairbanks, Anchorage)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sz_ins">Insulation Quality</label>
+          <select id="sz_ins">
+            <option value="0.80">Excellent (spray foam, new construction)</option>
+            <option value="0.90">Good (newer home, R-19+ walls)</option>
+            <option value="1.00" selected>Average (1990s–2000s construction)</option>
+            <option value="1.15">Below Average (older home, R-11 walls)</option>
+            <option value="1.30">Poor (pre-1980, minimal insulation)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sz_ceil">Ceiling Height <span class="opt">(ft)</span></label>
+          <select id="sz_ceil">
+            <option value="8" selected>Standard (8 ft)</option>
+            <option value="9">9 ft</option>
+            <option value="10">10 ft</option>
+            <option value="12">Vaulted / Cathedral (12 ft)</option>
+            <option value="14">High / Loft (14+ ft)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sz_sun">Sun Exposure</label>
+          <select id="sz_sun">
+            <option value="-0.10">Heavily Shaded / North-facing (−10%)</option>
+            <option value="0" selected>Average (mixed exposure)</option>
+            <option value="0.10">Sunny / South-facing (+10%)</option>
+            <option value="0.20">Very Sunny / West-facing, skylights (+20%)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sz_windows">Extra Large Windows</label>
+          <select id="sz_windows">
+            <option value="0" selected>0 extra (standard windows)</option>
+            <option value="1">1 extra large window</option>
+            <option value="2">2–3 large windows / sliding door</option>
+            <option value="4">4+ large windows / glass wall</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sz_occ">Occupants Above 2</label>
+          <select id="sz_occ">
+            <option value="0" selected>0 (1–2 people)</option>
+            <option value="1">+1 person (3 total)</option>
+            <option value="2">+2 people (4 total)</option>
+            <option value="4">+4 people (6+ total)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sz_mode">Primary Use Mode</label>
+          <select id="sz_mode">
+            <option value="both" selected>Heating + Cooling (heat pump)</option>
+            <option value="cool">Cooling Only</option>
+            <option value="heat">Heating Only</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="calc-btn" id="sz_calcBtn" onclick="calcSingle()">
+        ⚡ Calculate Mini Split BTU
+      </button>
+
+      <!-- Single-Zone Result -->
+      <div class="res-panel" id="sz_result">
+        <div class="res-top">
+          <div>
+            <div class="res-main-label">Recommended Cooling BTU</div>
+            <div class="res-main-number" id="sz_coolBtu">—</div>
+            <div class="res-badges">
+              <span class="res-badge heat" id="sz_heatBadge"></span>
+              <span class="res-badge ton" id="sz_tonBadge"></span>
+              <span class="res-badge seer" id="sz_seerBadge"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sizes-title">Standard Mini Split Sizes</div>
+        <div class="sizes-grid" id="sz_sizeChips"></div>
+
+        <div class="brand-recs">
+          <div class="brand-recs-title">📦 Recommended Models at This Size</div>
+          <div id="sz_brandRecs"></div>
+        </div>
+
+        <div class="res-note">
+          ⚠️ These results are based on simplified ACCA Manual J factors. For professional installation, always get a full Manual J load calculation from a licensed HVAC contractor.
+        </div>
+      </div>
+    </div><!-- /tab-single -->
+
+    <!-- ===== MULTI-ZONE TAB ===== -->
+    <div class="tab-content" id="tab-multi">
+      <div class="card-title"><div class="icon">🏢</div>Multi-Zone Mini Split Sizing</div>
+
+      <div class="info-box" style="margin-bottom:18px">
+        <div class="info-title">ℹ️ How Multi-Zone Sizing Works</div>
+        <p>Add each zone (room/area) below. The calculator totals all zone BTUs to recommend the correct outdoor unit capacity. Most multi-zone outdoor units are available in 18K, 24K, 30K, 36K, 42K, and 48K BTU.</p>
+      </div>
+
+      <!-- Shared settings for multi-zone -->
+      <div class="form-grid" style="margin-bottom:18px">
+        <div class="field">
+          <label for="mz_clim">Climate Zone <span class="opt">(applies to all zones)</span></label>
+          <select id="mz_clim">
+            <option value="1">Zone 1 — Hot/Humid (Miami, Houston)</option>
+            <option value="2">Zone 2 — Hot (Dallas, Phoenix, LA)</option>
+            <option value="3" selected>Zone 3 — Mixed-Hot (Atlanta, DC, Denver)</option>
+            <option value="4">Zone 4 — Mixed (NYC, Chicago, Seattle)</option>
+            <option value="5">Zone 5 — Cold (Minneapolis, Boston)</option>
+            <option value="6">Zone 6 — Very Cold (Fargo, Detroit)</option>
+            <option value="7">Zone 7 — Subarctic (Fairbanks, Anchorage)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mz_ins">Overall Insulation <span class="opt">(applies to all zones)</span></label>
+          <select id="mz_ins">
+            <option value="0.80">Excellent</option>
+            <option value="0.90">Good</option>
+            <option value="1.00" selected>Average</option>
+            <option value="1.15">Below Average</option>
+            <option value="1.30">Poor</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Zone list -->
+      <div class="zone-list" id="mz_zoneList"></div>
+      <button class="add-zone-btn" onclick="addZone()">+ Add Zone</button>
+
+      <button class="calc-btn" id="mz_calcBtn" onclick="calcMulti()" style="margin-top:18px">
+        ⚡ Calculate Multi-Zone BTU
+      </button>
+
+      <!-- Multi-Zone Result -->
+      <div class="res-panel" id="mz_result">
+        <div class="res-top">
+          <div>
+            <div class="res-main-label">Total System BTU (Cooling)</div>
+            <div class="res-main-number" id="mz_totalBtu">—</div>
+            <div class="res-badges">
+              <span class="res-badge heat" id="mz_heatBadge"></span>
+              <span class="res-badge ton" id="mz_tonBadge"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="zone-breakdown">
+          <div class="zone-breakdown-title">Zone Breakdown</div>
+          <div id="mz_zoneBreakdown"></div>
+        </div>
+
+        <div class="sizes-title">Recommended Outdoor Unit Sizes</div>
+        <div class="sizes-grid" id="mz_sizeChips"></div>
+
+        <div class="brand-recs">
+          <div class="brand-recs-title">📦 Multi-Zone Outdoor Unit Options</div>
+          <div id="mz_brandRecs"></div>
+        </div>
+
+        <div class="res-note">
+          ⚠️ Multi-zone systems must have each indoor head matched to the outdoor unit's compatibility list. Verify with manufacturer specs before purchasing. Always commission by a certified HVAC technician.
+        </div>
+      </div>
+    </div><!-- /tab-multi -->
+
+  </div><!-- /calc-card -->
+
+  <!-- ===== AD SLOT MID ===== -->
+  <div class="ad-slot">
+    <ins class="adsbygoogle" style="display:block;width:100%;height:90px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="horizontal"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
+
+  <!-- ===== SIZING TABLE ===== -->
+  <section class="section" id="sizing-chart">
+    <h2 class="section-title">Mini Split BTU by Room Size (2026)</h2>
+    <p class="section-sub">Quick reference for cooling BTU. For heating-dominant climates (Zone 5–7), size up by 20–30%.</p>
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Room Size</th>
+            <th>Cooling BTU</th>
+            <th>Heating BTU (Zone 3–4)</th>
+            <th>Heating BTU (Zone 5–7)</th>
+            <th>Unit Size</th>
+            <th>Zones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>150–250 sq ft</td><td>6,000 BTU</td><td>7,000–9,000 BTU</td><td>9,000–12,000 BTU</td><td><strong>9,000 BTU</strong></td><td><span class="tag both">Single</span></td></tr>
+          <tr><td>250–450 sq ft</td><td>9,000 BTU</td><td>10,000–13,000 BTU</td><td>12,000–15,000 BTU</td><td><strong>9,000–12,000 BTU</strong></td><td><span class="tag both">Single</span></td></tr>
+          <tr class="highlight"><td>450–700 sq ft</td><td>12,000 BTU</td><td>13,000–18,000 BTU</td><td>15,000–20,000 BTU</td><td><strong>12,000–18,000 BTU</strong></td><td><span class="tag both">Single</span></td></tr>
+          <tr><td>700–1,000 sq ft</td><td>18,000 BTU</td><td>18,000–24,000 BTU</td><td>22,000–28,000 BTU</td><td><strong>18,000–24,000 BTU</strong></td><td><span class="tag both">Single/Multi</span></td></tr>
+          <tr><td>1,000–1,400 sq ft</td><td>24,000 BTU</td><td>24,000–30,000 BTU</td><td>28,000–36,000 BTU</td><td><strong>24,000 BTU</strong></td><td><span class="tag both">Single/Multi</span></td></tr>
+          <tr><td>1,400–1,800 sq ft</td><td>30,000 BTU</td><td>30,000–38,000 BTU</td><td>36,000–45,000 BTU</td><td><strong>30,000–36,000 BTU</strong></td><td><span class="tag both">Multi (2–3 zones)</span></td></tr>
+          <tr><td>1,800–2,400 sq ft</td><td>36,000 BTU</td><td>38,000–48,000 BTU</td><td>45,000–54,000 BTU</td><td><strong>36,000–42,000 BTU</strong></td><td><span class="tag both">Multi (3–4 zones)</span></td></tr>
+          <tr><td>2,400–3,000 sq ft</td><td>48,000 BTU</td><td>48,000–58,000 BTU</td><td>54,000–65,000 BTU</td><td><strong>48,000 BTU</strong></td><td><span class="tag both">Multi (4–5 zones)</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.75rem;color:var(--text-3);margin-top:6px">Baseline: 20 BTU/sq ft cooling, 25–40 BTU/sq ft heating depending on climate. Average insulation (1.0×), 8 ft ceilings, standard windows assumed.</p>
+  </section>
+
+  <!-- ===== HOW TO CALCULATE ===== -->
+  <section class="section" id="how-to">
+    <h2 class="section-title">How to Calculate Mini Split BTU</h2>
+    <p class="section-sub">Follow these 6 steps to size any ductless mini split accurately.</p>
+
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Measure the room square footage</h3>
+          <p>Multiply length × width in feet. For odd-shaped rooms, break them into rectangles and add. Use the total conditioned floor area — do not include garages, attics, or unheated spaces.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Apply the base BTU factor for cooling</h3>
+          <p>For cooling: <code>BTU = sq ft × 20</code>. This gives you the base cooling load in BTU/hr for a moderate climate with average insulation and 8 ft ceilings.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Adjust for climate zone</h3>
+          <p>Zones 1–2 (very hot): multiply by 1.15–1.25. Zones 3–4 (moderate): multiply by 1.00–1.10. Zones 5–7 (cold): cooling load stays near baseline, but heating load increases significantly (use 35–50 BTU/sq ft for heating).</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Apply insulation and ceiling height multipliers</h3>
+          <p>Poor insulation: multiply by 1.15–1.30. Excellent insulation: multiply by 0.80–0.90. For ceilings above 8 ft: multiply by <code>ceiling height ÷ 8</code>. Example: 10 ft ceiling = multiply by 1.25.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>Add adjustments for windows, sun & occupants</h3>
+          <p>South-facing or sunny room: add 10%. Large sliding glass door or extra window: add 1,000 BTU per opening. Each occupant beyond 2: add 600 BTU.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h3>Round up to the nearest standard size</h3>
+          <p>Mini splits come in standard sizes: <strong>9K, 12K, 18K, 24K, 30K, 36K BTU</strong>. Round up to the next standard size if your calculation falls between two. For heating-dominant climates (Zone 5+), size to the heating BTU requirement if it's larger than the cooling BTU.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-box" style="margin-top:20px">
+      <div class="warn-title">⚠️ Avoid These Common Sizing Mistakes</div>
+      <ul>
+        <li><strong>Oversizing</strong> — An oversized mini split short-cycles, increasing humidity and reducing comfort. Never size more than 20% over your calculated load.</li>
+        <li><strong>Only sizing for cooling</strong> — In Zone 4–7 climates, the heating BTU requirement is usually larger than cooling. Size to the larger of the two.</li>
+        <li><strong>Ignoring HSPF in cold climates</strong> — For Zone 5–7, look for mini splits with HSPF2 ≥ 10 and rated capacity down to -5°F or lower for year-round use.</li>
+        <li><strong>Not matching indoor heads to outdoor unit</strong> — In multi-zone systems, each indoor air handler must be on the manufacturer's compatibility list for the outdoor unit.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== BRAND COMPARISON ===== -->
+  <section class="section" id="brands">
+    <h2 class="section-title">Mini Split Brand Comparison (2026)</h2>
+    <p class="section-sub">Top ductless mini split brands compared by efficiency, cold-climate performance, and warranty.</p>
+
+    <div class="brand-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Best For</th>
+            <th>SEER2 Range</th>
+            <th>HSPF2 Range</th>
+            <th>Min. Temp (Heating)</th>
+            <th>Warranty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mitsubishi</strong></td>
+            <td>Cold climates, premium quality</td>
+            <td>20–33</td>
+            <td>10–14</td>
+            <td>−13°F (Hyper-Heat)</td>
+            <td>12 yr parts / 12 yr compressor</td>
+          </tr>
+          <tr>
+            <td><strong>Daikin</strong></td>
+            <td>Reliability, wide model range</td>
+            <td>18–28</td>
+            <td>9–12</td>
+            <td>−4°F to 5°F</td>
+            <td>10 yr parts / 10 yr compressor</td>
+          </tr>
+          <tr>
+            <td><strong>Fujitsu</strong></td>
+            <td>Extreme cold climates</td>
+            <td>20–30</td>
+            <td>10–14</td>
+            <td>−15°F (Halcyon)</td>
+            <td>10 yr parts / 10 yr compressor</td>
+          </tr>
+          <tr class="highlight">
+            <td><strong>Mr. Cool DIY</strong></td>
+            <td>DIY installation, value</td>
+            <td>17–21</td>
+            <td>9–10</td>
+            <td>5°F</td>
+            <td>7 yr parts / 7 yr compressor</td>
+          </tr>
+          <tr>
+            <td><strong>LG</strong></td>
+            <td>Smart home integration</td>
+            <td>20–26</td>
+            <td>10–12</td>
+            <td>−4°F</td>
+            <td>10 yr parts / 10 yr compressor</td>
+          </tr>
+          <tr>
+            <td><strong>Bosch</strong></td>
+            <td>Efficiency, North America support</td>
+            <td>20–26</td>
+            <td>10–12</td>
+            <td>−4°F</td>
+            <td>10 yr parts / 10 yr compressor</td>
+          </tr>
+          <tr>
+            <td><strong>Senville / Pioneer</strong></td>
+            <td>Budget, DIY-friendly</td>
+            <td>16–20</td>
+            <td>8–10</td>
+            <td>5°F–14°F</td>
+            <td>5 yr parts / 5 yr compressor</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.75rem;color:var(--text-3);margin-top:6px">SEER2/HSPF2 are 2023+ DOE efficiency ratings. Older SEER/HSPF numbers are roughly 5–8% higher due to the updated test methodology. Always verify with the manufacturer's current spec sheet.</p>
+  </section>
+
+  <!-- ===== AD SLOT ===== -->
+  <div class="ad-slot">
+    <ins class="adsbygoogle" style="display:block;width:100%;height:90px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="horizontal"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section" id="faq">
+    <h2 class="section-title">Mini Split BTU — Frequently Asked Questions</h2>
+    <p class="section-sub">Answers to the most searched questions about mini split sizing.</p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          How many BTU mini split do I need for 500 sq ft?
+          <span class="arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <p>A 500 sq ft room typically needs a <strong>12,000 BTU (1-ton) mini split</strong> for cooling in a moderate climate (Zone 3–4). If your climate zone is hot (Zone 1–2), size up to 15,000–18,000 BTU. In cold climates (Zone 5–7) where heating dominates, the heating BTU requirement (15,000–22,000 BTU) may determine the unit size.</p>
+          <ul>
+            <li>Zone 1–2 (Hot): 12,000–15,000 BTU</li>
+            <li>Zone 3–4 (Moderate): 12,000 BTU</li>
+            <li>Zone 5–6 (Cold): 12,000–18,000 BTU (heating-driven)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          What size mini split for 1,000 sq ft?
+          <span class="arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <p>A 1,000 sq ft space needs approximately <strong>18,000–24,000 BTU (1.5–2 ton)</strong> depending on climate, ceiling height, and insulation. In moderate climates with good insulation: 18,000 BTU. In hot climates or older homes: 24,000 BTU. In very cold climates, the heating load may require 24,000–28,000 BTU.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          What is the difference between a mini split and a heat pump?
+          <span class="arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <p>A mini split IS a type of heat pump — specifically a <strong>ductless heat pump</strong>. "Mini split" refers to the two-part design: a small outdoor compressor unit and one or more indoor air handlers, connected by refrigerant lines. Most modern mini splits provide both cooling and heating (heat pump mode) and are called mini split heat pumps. Some cooling-only versions exist but are less common.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          Can a mini split heat in very cold weather?
+          <span class="arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes — modern cold-climate mini splits (Mitsubishi Hyper-Heat, Fujitsu Halcyon, Daikin Aurora) maintain heating capacity down to <strong>−13°F to −15°F</strong>. Standard mini splits typically work to 5°F–14°F. For Zone 5–7, always verify the manufacturer's rated heating capacity at your area's 99% design temperature, not just the minimum operating temperature.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          How much does it cost to run a mini split per month?
+          <span class="arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <p>A 12,000 BTU (1-ton) mini split at SEER2 20 uses approximately <strong>600 watts</strong> when running. At 8 hours/day and $0.15/kWh electricity: roughly <strong>$21–$28/month for cooling</strong>. For heating at COP 3.0 (HSPF2 ~10), the same unit uses ~400 watts per 1,000 BTU of heat output — about 60–70% less energy than electric resistance heating.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          How do I size a multi-zone mini split system?
+          <span class="arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <p>Calculate each zone individually using room size, climate, and insulation. Sum all zone BTUs to get total required outdoor unit capacity. The outdoor unit should be sized at <strong>100–125% of the total zone BTU sum</strong> — do not exceed 130% as the compressor cannot efficiently serve all zones simultaneously at maximum load.</p>
+          <ul>
+            <li>Example: 3 zones at 9K + 9K + 12K = 30K total → use a 30K–36K outdoor unit</li>
+            <li>Always check manufacturer compatibility: each indoor head must match the outdoor unit model</li>
+            <li>Multi-zone systems can run zones independently at part-load</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          What SEER2 rating should I buy?
+          <span class="arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <p>The minimum SEER2 for mini splits sold in the US since 2023 is <strong>13.4 SEER2</strong> (equivalent to old 14 SEER). For best value: <strong>18–20 SEER2</strong> typically offers the best payback period. Above 24 SEER2 has diminishing returns in most climates unless AC runs 2,000+ hours/year. In hot climates (Zone 1–2) where AC runs constantly, 22–28 SEER2 may pay back in 6–8 years.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          Can I install a mini split myself (DIY)?
+          <span class="arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <p>DIY installation is possible with pre-charged line sets (Mr. Cool DIY, Pioneer, Senville). However, <strong>handling refrigerant requires EPA 608 certification</strong> in the US. DIY-friendly models use pre-charged sealed lines that don't require refrigerant handling. For most brands, a licensed HVAC technician must make the refrigerant connections to maintain the warranty and comply with regulations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RELATED CALCULATORS ===== -->
+  <section class="section">
+    <h2 class="section-title">Related BTU Calculators</h2>
+    <div class="related-grid">
+      <a href="/ac-btu-calculator.html" class="related-card">
+        <div class="rc-icon">❄️</div>
+        <div class="rc-title">AC BTU Calculator</div>
+        <div class="rc-desc">Size window, portable & central AC units by room</div>
+      </a>
+      <a href="/heating-btu-calculator.html" class="related-card">
+        <div class="rc-icon">🔥</div>
+        <div class="rc-title">Heating BTU Calculator</div>
+        <div class="rc-desc">Size furnaces, boilers & heat pumps by home size</div>
+      </a>
+      <a href="/btu-conversion-calculator.html" class="related-card">
+        <div class="rc-icon">⚡</div>
+        <div class="rc-title">BTU Conversion Calculator</div>
+        <div class="rc-desc">Convert BTU to watts, kW, tons & more</div>
+      </a>
+      <a href="/radiator-btu-calculator.html" class="related-card">
+        <div class="rc-icon">🌡️</div>
+        <div class="rc-title">Radiator BTU Calculator</div>
+        <div class="rc-desc">Find the BTU output for panel & column radiators</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">BTUCalc</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/ac-btu-calculator.html">AC BTU</a>
+      <a href="/heating-btu-calculator.html">Heating BTU</a>
+      <a href="/mini-split-btu-calculator.html">Mini Split</a>
+      <a href="/radiator-btu-calculator.html">Radiator</a>
+      <a href="/btu-conversion-calculator.html">Convert</a>
+    </div>
+    <div class="footer-copy">© 2026 BTUCalc. For reference only — not a substitute for professional HVAC load calculation.</div>
+  </div>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+'use strict';
+
+/* ===== TAB SWITCHER ===== */
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+/* ===== CLIMATE BTU FACTORS ===== */
+// [coolFactor BTU/sqft, heatFactor BTU/sqft]
+var climateFactors={
+  1:[22,20],2:[21,23],3:[20,28],4:[20,35],5:[19,42],6:[18,50],7:[17,58]
+};
+
+/* ===== STANDARD SIZES ===== */
+var singleSizes=[6000,9000,12000,15000,18000,24000,30000,36000];
+var multiSizes=[18000,24000,27000,30000,36000,42000,48000,54000,60000];
+
+/* ===== BRAND DATA ===== */
+var brandData={
+  6000:[
+    {brand:'Senville LETO',model:'9K (min size)',seer:'17.0'},
+    {brand:'Pioneer WYS',model:'9K (min size)',seer:'19.0'},
+    {brand:'Gree Livo',model:'9K (min size)',seer:'20.0'}
+  ],
+  9000:[
+    {brand:'Mr. Cool DIY',model:'9K 3rd Gen',seer:'20.0'},
+    {brand:'Pioneer Diamante',model:'9K',seer:'20.5'},
+    {brand:'Mitsubishi MSZ-GL09',model:'9K',seer:'22.0'}
+  ],
+  12000:[
+    {brand:'Mr. Cool DIY',model:'12K 3rd Gen',seer:'20.0'},
+    {brand:'Daikin 19 Series',model:'12K',seer:'19.0'},
+    {brand:'Mitsubishi MSZ-GL12',model:'12K',seer:'22.0'}
+  ],
+  15000:[
+    {brand:'Fujitsu RLXFW',model:'15K',seer:'25.0'},
+    {brand:'LG LAN150HYV',model:'15K',seer:'21.5'},
+    {brand:'Daikin FTXS15',model:'15K',seer:'19.5'}
+  ],
+  18000:[
+    {brand:'Mr. Cool DIY',model:'18K 3rd Gen',seer:'20.0'},
+    {brand:'LG LA180HYV',model:'18K',seer:'21.5'},
+    {brand:'Mitsubishi MSZ-GL18',model:'18K',seer:'20.0'}
+  ],
+  24000:[
+    {brand:'Mitsubishi MSZ-GL24',model:'24K',seer:'19.0'},
+    {brand:'Daikin FTXS24',model:'24K',seer:'17.0'},
+    {brand:'Bosch BOVA-24HDN1',model:'24K',seer:'20.0'}
+  ],
+  30000:[
+    {brand:'LG LA300HYV',model:'30K',seer:'21.0'},
+    {brand:'Carrier 38MAQB30',model:'30K',seer:'18.5'},
+    {brand:'Daikin RXL30',model:'30K',seer:'18.0'}
+  ],
+  36000:[
+    {brand:'Mitsubishi MXZ-4C36',model:'36K Multi',seer:'18.0'},
+    {brand:'Daikin 4MXL36',model:'36K Multi',seer:'17.5'},
+    {brand:'LG LMU36CHV',model:'36K Multi',seer:'21.0'}
+  ]
+};
+
+function getBrands(btu){
+  var keys=Object.keys(brandData).map(Number);
+  var closest=keys.reduce((a,b)=>Math.abs(b-btu)<Math.abs(a-btu)?b:a);
+  return brandData[closest]||[];
+}
+
+function renderBrands(containerId,btu){
+  var brands=getBrands(btu);
+  var html='';
+  brands.forEach(function(b){
+    html+='<div class="brand-row"><span class="brand-name">'+b.brand+'</span><span class="brand-model">'+b.model+'</span><span class="brand-seer">SEER2 '+b.seer+'</span></div>';
+  });
+  document.getElementById(containerId).innerHTML=html;
+}
+
+function renderChips(containerId,sizes,targetBtu,tolerance){
+  tolerance=tolerance||2500;
+  var html='';
+  sizes.forEach(function(s){
+    var cls='size-chip';
+    var diff=Math.abs(s-targetBtu);
+    if(diff<=tolerance)cls+=' match';
+    else if(diff<=8000)cls+=' close';
+    html+='<span class="'+cls+'">'+(s/1000)+'K BTU</span>';
+  });
+  document.getElementById(containerId).innerHTML=html;
+}
+
+/* ===== ANIMATE NUMBER ===== */
+function animNum(el,end,suffix){
+  suffix=suffix||'';
+  var start=0,dur=600,t0=null;
+  function step(ts){
+    if(!t0)t0=ts;
+    var p=Math.min((ts-t0)/dur,1);
+    var e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(start+(end-start)*e).toLocaleString()+suffix;
+    if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ===== SINGLE-ZONE CALC ===== */
+function calcSingle(){
+  var sqft=parseFloat(document.getElementById('sz_sqft').value)||0;
+  var clim=parseInt(document.getElementById('sz_clim').value)||3;
+  var ins=parseFloat(document.getElementById('sz_ins').value)||1;
+  var ceil=parseFloat(document.getElementById('sz_ceil').value)||8;
+  var sun=parseFloat(document.getElementById('sz_sun').value)||0;
+  var wins=parseInt(document.getElementById('sz_windows').value)||0;
+  var occ=parseInt(document.getElementById('sz_occ').value)||0;
+  var mode=document.getElementById('sz_mode').value||'both';
+
+  if(!sqft||sqft<50){alert('Please enter a valid room size (at least 50 sq ft).');return;}
+
+  var cf=climateFactors[clim];
+  var ceilMult=ceil/8;
+
+  // Cooling BTU
+  var coolBtu=sqft*cf[0]*ins*ceilMult;
+  coolBtu=coolBtu*(1+sun);
+  coolBtu+=wins*1000;
+  coolBtu+=occ*600;
+
+  // Heating BTU
+  var heatBtu=sqft*cf[1]*ins*ceilMult;
+  heatBtu+=wins*800;
+
+  // Display BTU based on mode
+  var displayCool=Math.round(coolBtu/500)*500;
+  var displayHeat=Math.round(heatBtu/500)*500;
+
+  // Recommended size = larger of cool or heat if heat pump
+  var recBtu=displayCool;
+  if(mode==='both')recBtu=Math.max(displayCool,displayHeat);
+  if(mode==='heat')recBtu=displayHeat;
+
+  var tons=(recBtu/12000).toFixed(2);
+
+  // Update UI
+  var coolEl=document.getElementById('sz_coolBtu');
+  animNum(coolEl,recBtu,' BTU');
+
+  document.getElementById('sz_heatBadge').textContent='🔥 Heating: '+displayHeat.toLocaleString()+' BTU';
+  document.getElementById('sz_tonBadge').textContent='🧊 '+tons+' tons';
+  document.getElementById('sz_seerBadge').textContent='✓ Look for SEER2 18+';
+
+  renderChips('sz_sizeChips',singleSizes,recBtu);
+  renderBrands('sz_brandRecs',recBtu);
+
+  var panel=document.getElementById('sz_result');
+  panel.classList.add('show');
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+/* ===== MULTI-ZONE ===== */
+var zones=[];
+var zoneCount=0;
+
+function addZone(){
+  zoneCount++;
+  zones.push(zoneCount);
+  renderZoneList();
+}
+
+function removeZone(id){
+  zones=zones.filter(function(z){return z!==id;});
+  renderZoneList();
+}
+
+function renderZoneList(){
+  var list=document.getElementById('mz_zoneList');
+  if(zones.length===0){
+    list.innerHTML='<p style="font-size:.85rem;color:var(--text-3);text-align:center;padding:16px">No zones added yet. Click "Add Zone" below.</p>';
+    return;
+  }
+  var html='';
+  zones.forEach(function(id,idx){
+    html+='<div class="zone-row" id="zone_'+id+'">';
+    html+='<div class="zone-label">Zone '+(idx+1)+'</div>';
+    html+='<div class="field"><label>Room / Area Name</label><input type="text" id="zn_name_'+id+'" placeholder="e.g. Living Room" value="Zone '+(idx+1)+'"></div>';
+    html+='<div class="field"><label>Square Footage</label><input type="number" id="zn_sqft_'+id+'" placeholder="sq ft" min="50" inputmode="numeric"></div>';
+    html+='<button class="remove-btn" onclick="removeZone('+id+')" title="Remove zone">✕</button>';
+    html+='<div class="field"><label>Ceiling Height</label><select id="zn_ceil_'+id+'"><option value="8">8 ft</option><option value="9">9 ft</option><option value="10">10 ft</option><option value="12">12 ft vaulted</option><option value="14">14 ft+</option></select></div>';
+    html+='<div class="field"><label>Sun Exposure</label><select id="zn_sun_'+id+'"><option value="-0.10">Shaded / North</option><option value="0" selected>Average</option><option value="0.10">Sunny / South</option><option value="0.20">Very Sunny / West</option></select></div>';
+    html+='</div>';
+  });
+  list.innerHTML=html;
+}
+
+function calcMulti(){
+  if(zones.length===0){alert('Please add at least one zone.');return;}
+
+  var clim=parseInt(document.getElementById('mz_clim').value)||3;
+  var ins=parseFloat(document.getElementById('mz_ins').value)||1;
+  var cf=climateFactors[clim];
+
+  var totalCool=0,totalHeat=0;
+  var breakdown=[];
+  var allValid=true;
+
+  zones.forEach(function(id){
+    var sqft=parseFloat(document.getElementById('zn_sqft_'+id).value)||0;
+    var name=document.getElementById('zn_name_'+id).value||'Zone '+id;
+    var ceil=parseFloat(document.getElementById('zn_ceil_'+id).value)||8;
+    var sun=parseFloat(document.getElementById('zn_sun_'+id).value)||0;
+
+    if(!sqft||sqft<50){allValid=false;return;}
+
+    var ceilMult=ceil/8;
+    var cool=sqft*cf[0]*ins*ceilMult*(1+sun);
+    var heat=sqft*cf[1]*ins*ceilMult;
+    cool=Math.round(cool/500)*500;
+    heat=Math.round(heat/500)*500;
+    var zBtu=Math.max(cool,heat);
+    totalCool+=cool;
+    totalHeat+=heat;
+    breakdown.push({name:name,cool:cool,heat:heat,btu:zBtu});
+  });
+
+  if(!allValid){alert('Please enter a valid square footage for every zone.');return;}
+
+  var totalDisplay=Math.max(totalCool,totalHeat);
+  var tons=(totalDisplay/12000).toFixed(2);
+
+  // Breakdown HTML
+  var bdHtml='';
+  breakdown.forEach(function(z){
+    bdHtml+='<div class="zone-item">';
+    bdHtml+='<span class="zone-item-name">'+z.name+'</span>';
+    bdHtml+='<span class="zone-item-btu">'+z.btu.toLocaleString()+' BTU</span>';
+    bdHtml+='</div>';
+  });
+  bdHtml+='<div class="zone-item"><span class="zone-item-name">Total Required</span><span class="zone-item-btu">'+totalDisplay.toLocaleString()+' BTU</span></div>';
+  document.getElementById('mz_zoneBreakdown').innerHTML=bdHtml;
+
+  animNum(document.getElementById('mz_totalBtu'),totalDisplay,' BTU');
+  document.getElementById('mz_heatBadge').textContent='🔥 Heat total: '+totalHeat.toLocaleString()+' BTU';
+  document.getElementById('mz_tonBadge').textContent='🧊 '+tons+' tons';
+
+  renderChips('mz_sizeChips',multiSizes,totalDisplay,5000);
+  renderBrands('mz_brandRecs',totalDisplay);
+
+  var panel=document.getElementById('mz_result');
+  panel.classList.add('show');
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+/* ===== FAQ TOGGLE ===== */
+function toggleFaq(btn){
+  var ans=btn.nextElementSibling;
+  var open=ans.classList.contains('open');
+  // close all
+  document.querySelectorAll('.faq-a').forEach(function(a){a.classList.remove('open');});
+  document.querySelectorAll('.faq-q').forEach(function(b){b.setAttribute('aria-expanded','false');});
+  if(!open){
+    ans.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+  }
+}
+
+/* ===== ENTER KEY ===== */
+['sz_sqft','sz_clim','sz_ins','sz_ceil','sz_sun','sz_windows','sz_occ','sz_mode'].forEach(function(id){
+  var el=document.getElementById(id);
+  if(el)el.addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('sz_calcBtn').click();});
+});
+
+/* ===== INIT: start with 2 zones for multi tab ===== */
+addZone();
+addZone();
+
+/* ===== SMOOTH SCROLL ===== */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
+</body>
+</html>
